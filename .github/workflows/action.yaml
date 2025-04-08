@@ -1,0 +1,117 @@
+name: ⚙️ Vectorial Profiler - Docker Build and Runtime Validation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    env:
+      IMAGE_NAME: chaos4455/vectorial-profiler
+      VERSION: latest
+      DOCKERHUB_USERNAME: chaos4455
+      FLASK_PORT: 8881
+
+    steps:
+      - name: 🧱 Checkout Repository (projeto-vectorial-profiler)
+        uses: actions/checkout@v3
+
+      - name: 🧾 Create Dockerfile dynamically
+        run: |
+          cat <<'EOF' > Dockerfile
+          FROM ubuntu:22.04
+          ENV DEBIAN_FRONTEND=noninteractive
+
+          RUN apt-get update && \
+              apt-get upgrade -y && \
+              apt-get install -y python3 python3-pip curl git net-tools iputils-ping nano supervisor && \
+              pip3 install --no-cache-dir \
+                flask \
+                flask_cors \
+                requests \
+                colorama \
+                psutil \
+                schedule
+
+          RUN useradd -m -s /bin/bash vectorial && \
+              echo 'vectorial:vectorial' | chpasswd && \
+              mkdir -p /home/vectorial/app /var/log/supervisor
+
+          WORKDIR /home/vectorial/app
+          COPY . .
+
+          COPY supervisord.conf /etc/supervisor/supervisord.conf
+
+          CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+          EOF
+
+      - name: ⚙️ Create supervisord.conf dynamically
+        run: |
+          cat <<'EOF' > supervisord.conf
+          [supervisord]
+          nodaemon=true
+          logfile=/var/log/supervisor/supervisord.log
+          pidfile=/tmp/supervisord.pid
+
+          [program:generator]
+          command=python3 /home/vectorial/app/geraprofilesv3.py
+          directory=/home/vectorial/app
+          autostart=true
+          autorestart=false
+          startsecs=5
+          exitcodes=0,1
+          stderr_logfile=/var/log/supervisor/generator.err.log
+          stdout_logfile=/var/log/supervisor/generator.out.log
+
+          [program:profiler]
+          command=python3 /home/vectorial/app/match-profilerv3-web-dash-full-themes.py
+          directory=/home/vectorial/app
+          autostart=true
+          autorestart=true
+          startsecs=10
+          stderr_logfile=/var/log/supervisor/profiler.err.log
+          stdout_logfile=/var/log/supervisor/profiler.out.log
+          EOF
+
+      - name: 🐳 Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: 🛠️ Build Docker Image from this repo (vectorial-profiler)
+        run: |
+          docker build -t $IMAGE_NAME:$VERSION .
+
+      - name: 📤 Push Docker Image
+        run: |
+          docker push $IMAGE_NAME:$VERSION
+
+      - name: 🚀 Deploy Container & Validate
+        run: |
+          echo '🧪 Subindo container com o código do projeto-vectorial-profiler...'
+          docker run -d --name vectorial_profiler_test -p $FLASK_PORT:$FLASK_PORT $IMAGE_NAME:$VERSION
+
+          echo '⏳ Aguardando 20 segundos para inicialização completa...'
+          sleep 20
+
+          echo "🔍 Verificando se a porta $FLASK_PORT está ativa..."
+          if nc -zv localhost $FLASK_PORT; then
+            echo '✅ Porta ativa! Serviços iniciados com sucesso.'
+          else
+            echo '❌ Falha: Porta não está respondendo após tempo de espera.'
+            docker logs vectorial_profiler_test
+            exit 1
+          fi
+
+          echo '📜 Logs do supervisord:'
+          docker exec vectorial_profiler_test tail -n 50 /var/log/supervisor/supervisord.log || echo '⚠️ Não foi possível obter logs.'
+
+          echo '📜 Logs do generator (erro esperado pode aparecer):'
+          docker exec vectorial_profiler_test tail -n 50 /var/log/supervisor/generator.out.log || echo '⚠️ Sem logs do generator.'
+
+          echo '📜 Logs do profiler (deve estar rodando sem falhas):'
+          docker exec vectorial_profiler_test tail -n 50 /var/log/supervisor/profiler.out.log || echo '⚠️ Sem logs do profiler.'
