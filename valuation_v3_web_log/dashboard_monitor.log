@@ -1,0 +1,26 @@
+2025-04-02 00:04:40,919 - INFO - [Dashboard] - --- Log Dashboard Starting ---
+2025-04-02 00:04:40,920 - INFO - [Dashboard] - Starting background log update thread...
+2025-04-02 00:04:40,920 - INFO - [Dashboard] - Background update task started.
+2025-04-02 00:04:40,920 - INFO - [Dashboard] - Starting Flask server on http://127.0.0.1:8777
+2025-04-02 00:04:40,922 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250401_123237.log
+2025-04-02 00:04:40,959 - INFO - [Dashboard] - Data updated. Total lines: 184, Errors: 0, Warnings: 0. Parse Errors: 3
+2025-04-02 00:05:10,964 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250401_123237.log
+2025-04-02 00:05:10,970 - INFO - [Dashboard] - Data updated. Total lines: 184, Errors: 0, Warnings: 0. Parse Errors: 6
+2025-04-02 00:05:40,984 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:05:40,995 - INFO - [Dashboard] - Data updated. Total lines: 19, Errors: 0, Warnings: 0. Parse Errors: 9
+2025-04-02 00:06:11,009 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:06:11,025 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 12
+2025-04-02 00:06:41,036 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:06:41,041 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 15
+2025-04-02 00:07:11,047 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:07:11,052 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 18
+2025-04-02 00:07:41,064 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:07:41,069 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 21
+2025-04-02 00:08:11,086 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:08:11,091 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 24
+2025-04-02 00:08:41,099 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:08:41,105 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 27
+2025-04-02 00:09:11,115 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:09:11,120 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 30
+2025-04-02 00:09:41,124 - INFO - [Dashboard] - Processing latest log file: matchmaking_dashboard_20250402_000512.log
+2025-04-02 00:09:41,129 - INFO - [Dashboard] - Data updated. Total lines: 154, Errors: 0, Warnings: 0. Parse Errors: 33

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Arquitetura | projeto vectorial profiler | Replika AI</title>
+    <style>
+        /* Reset Básico e Estilos Globais */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 74%);
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 60px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Container Principal do Diagrama */
+        .diagram-container {
+            width: 95%;
+            max-width: 1200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            perspective: 1800px;
+        }
+
+        /* Estilo das Camadas */
+        .layer {
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .layer:hover {
+            /* transform: translateY(-3px) translateZ(8px); */ /* Efeito hover opcional na camada */
+        }
+
+        /* Cores e Gradientes das Camadas */
+        .layer-data-gen { background: linear-gradient(145deg, #00a9cc, #007bff); } /* Azul Ciano -> Azul */
+        .layer-vectorization { background: linear-gradient(145deg, #5cb85c, #4cae4c); } /* Verde Claro -> Verde */
+        .layer-clustering { background: linear-gradient(145deg, #9d6ac9, #8a2be2); } /* Roxo -> Azul Violeta */
+        .layer-visualization { background: linear-gradient(145deg, #f0ad4e, #ec971f); } /* Laranja Claro -> Laranja */
+        .layer-matching { background: linear-gradient(145deg, #22b8c2, #1a98a1); } /* Azul-Verde -> Teal */
+        .layer-web { background: linear-gradient(145deg, #d9534f, #c9302c); } /* Vermelho -> Vermelho Escuro */
+        .layer-logging { background: linear-gradient(145deg, #6c757d, #5a6268); } /* Cinza -> Cinza Escuro */
+        .layer-testing { background: linear-gradient(145deg, #17a2b8, #138496); } /* Azul Claro -> Azul Escuro */
+
+        .layer-title {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sub-layer-title {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        /* Grid para os Componentes dentro das Camadas */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        /* Estilo dos Componentes Individuais */
+        .component {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #f0f8ff;
+            padding: 20px 15px;
+            border-radius: 12px;
+            font-size: 0.95em;
+            text-align: center;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: default;
+            transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        background-color 0.35s ease;
+            opacity: 0;
+            animation: fadeInScale 0.5s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .component-desc {
+            font-size: 0.8em;
+            color: rgba(224, 224, 224, 0.7);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .component .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 110%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            font-size: 0.85em;
+            pointer-events: none;
+        }
+
+        .component:hover {
+            transform: scale(1.07) translateZ(18px) rotateY(4deg);
+            background-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .component:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Animação Fade-in com Escala */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .components-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            .diagram-container { width: 95%; padding: 30px; }
+            .layer { padding: 20px; }
+            .layer-title { font-size: 1.4em; }
+            .sub-layer-title { font-size: 1.1em; }
+            .component { font-size: 0.9em; padding: 15px 12px; min-height: 70px; }
+        }
+        @media (max-width: 480px) {
+            body { padding: 20px 10px; }
+            .diagram-container { border-radius: 15px; padding: 20px; }
+            .layer { border-radius: 12px; padding: 15px;}
+            .layer-title { font-size: 1.2em; }
+            .sub-layer-title { font-size: 1.0em; }
+            .components-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+            .component { font-size: 0.8em; padding: 12px 8px; border-radius: 8px; min-height: 60px; }
+            .component-desc { display: none; } /* Oculta descrição em telas muito pequenas */
+            .component .tooltiptext { display: none; } /* Oculta tooltip em telas muito pequenas */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="diagram-container">
+
+        <!-- Camada Geração de Dados -->
+        <div class="layer layer-data-gen">
+            <div class="layer-title">Geração de Dados</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.1s;">
+                    geraprofilesv3.py
+                    <span class="component-desc">Geração de perfis</span>
+                    <span class="tooltiptext">Gera perfis de jogadores com dados sintéticos. Usa `faker` para gerar nomes, cidades, etc. O script possui opções para configurar a quantidade de perfis, o banco de dados de saída, e outros parâmetros. Veja a função `parse_arguments` para detalhes.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.15s;">
+                    geraprofilesv2.py
+                    <span class="component-desc">Versão anterior</span>
+                    <span class="tooltiptext">Versão anterior do script de geração de perfis.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.2s;">
+                    geraprofilesv1.py
+                    <span class="component-desc">Versão inicial</span>
+                    <span class="tooltiptext">Versão inicial do script de geração de perfis.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada Vectorização -->
+        <div class="layer layer-vectorization">
+            <div class="layer-title">Vectorização</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.25s;">
+                    gerar_vetor_perfil (geraprofilesv3.py)
+                    <span class="component-desc">Cria vetores</span>
+                    <span class="tooltiptext">Função que transforma os perfis em vetores numéricos. Utiliza a função `_get_vector_maps` para obter os mapeamentos entre características e índices do vetor.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.3s;">
+                    gerar_embedding_perfil (geraprofilesv3.py)
+                    <span class="component-desc">Cria embeddings</span>
+                    <span class="tooltiptext">Função que gera embeddings para os perfis. Utiliza modelos pré-treinados (e.g., SentenceTransformer) para representar o perfil em um espaço vetorial denso.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.35s;">
+                    vetores_perfis_v6.db
+                    <span class="component-desc">Banco de vetores</span>
+                    <span class="tooltiptext">Banco de dados SQLite que armazena os vetores numéricos dos perfis. A tabela `vetores` possui as colunas `id` (INTEGER) e `vetor` (BLOB). Contém 30000 linhas.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.4s;">
+                    embeddings_perfis_v6.db
+                    <span class="component-desc">Banco de embeddings</span>
+                    <span class="tooltiptext">Banco de dados SQLite que armazena os embeddings dos perfis. A tabela `embeddings` possui as colunas `id` (INTEGER) e `embedding` (BLOB). Contém 30000 linhas.</span>
+                </div>
+                 <div class="component" style="animation-delay: 0.45s;">
+                    vectorizerv1.py
+                    <span class="component-desc">Script antigo</span>
+                    <span class="tooltiptext">Versão antiga do script de vectorização.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada Clustering -->
+        <div class="layer layer-clustering">
+            <div class="layer-title">Clustering</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.5s;">
+                    realizar_clustering (geraprofilesv3.py)
+                    <span class="component-desc">Agrupa perfis</span>
+                    <span class="tooltiptext">Função que realiza o clustering dos perfis utilizando o algoritmo KMeans do FAISS. O número de clusters pode ser configurado. A função também calcula métricas de avaliação do clustering (Silhouette Score, Davies-Bouldin Score).</span>
+                </div>
+                <div class="component" style="animation-delay: 0.55s;">
+                    salvar_clusters_lote (geraprofilesv3.py)
+                    <span class="component-desc">Salva clusters</span>
+                    <span class="tooltiptext">Função que salva os resultados do clustering no banco de dados.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.6s;">
+                    clusters_perfis_v6.db
+                    <span class="component-desc">Banco de clusters</span>
+                    <span class="tooltiptext">Banco de dados SQLite que armazena os resultados do clustering. A tabela `clusters` possui as colunas `id` (INTEGER) e `cluster_id` (INTEGER). ATENÇÃO: Este banco está vazio! (0 linhas)</span>
+                </div>
+                <div class="component" style="animation-delay: 0.65s;">
+                    salvar_indice_faiss (geraprofilesv3.py)
+                    <span class="component-desc">Salva índice FAISS</span>
+                    <span class="tooltiptext">Função que salva o índice FAISS para uso futuro.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.7s;">
+                    salvar_centroides (geraprofilesv3.py)
+                    <span class="component-desc">Salva centroides</span>
+                    <span class="tooltiptext">Função que salva os centroides dos clusters no banco de dados.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada Visualização -->
+        <div class="layer layer-visualization">
+            <div class="layer-title">Visualização</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.75s;">
+                    create_3d_plot (data-cubic-viz-v1.py)
+                    <span class="component-desc">Cria plot 3D</span>
+                    <span class="tooltiptext">Função que cria o plot 3D interativo dos perfis utilizando a biblioteca Plotly. Utiliza os embeddings reduzidos por PCA para posicionar os perfis no espaço 3D. A cor dos pontos representa a similaridade entre os perfis.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.8s;">
+                    format_hover_text (data-cubic-viz-v1.py)
+                    <span class="component-desc">Formata texto hover</span>
+                    <span class="tooltiptext">Função que formata o texto que aparece ao passar o mouse sobre os pontos no plot 3D. Inclui detalhes do perfil e scores de similaridade.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.85s;">
+                    generate_html_file (data-cubic-viz-v1.py)
+                    <span class="component-desc">Gera arquivo HTML</span>
+                    <span class="tooltiptext">Função que salva o plot 3D em um arquivo HTML interativo.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.9s;">
+                    heathmap-data-gen-v2.py
+                    <span class="component-desc">Gera heatmap</span>
+                    <span class="tooltiptext">Script que gera imagens de heatmap representando a similaridade entre perfis. Utiliza a biblioteca PIL para desenhar a imagem.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.95s;">
+                    img-data-outputs
+                    <span class="component-desc">Imagens geradas</span>
+                    <span class="tooltiptext">Diretório que armazena as imagens de heatmap geradas.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada Matchmaking -->
+        <div class="layer layer-matching">
+            <div class="layer-title">Matchmaking</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 1.0s;">
+                    buscar_e_rankear_vizinhos (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Busca vizinhos</span>
+                    <span class="tooltiptext">Função principal do sistema de matchmaking. Busca vizinhos mais próximos utilizando o índice FAISS, calcula scores de similaridade customizados e rankeia os resultados.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.05s;">
+                    calculate_custom_similarity (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Calcula similaridade</span>
+                    <span class="tooltiptext">Função que calcula a similaridade customizada entre dois perfis, dando peso a diferentes características (plataforma, disponibilidade, etc.).</span>
+                </div>
+                 <div class="component" style="animation-delay: 1.1s;">
+                    load_data_and_build_index (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Carrega dados e constrói índice</span>
+                    <span class="tooltiptext">Carrega embeddings e IDs dos perfis e constrói o índice FAISS para busca eficiente.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.15s;">
+                    match-profilerv3-web-dash-full-themes-fastapi.py
+                    <span class="component-desc">App FastAPI</span>
+                    <span class="tooltiptext">Implementação completa do sistema de matchmaking com interface web usando o framework FastAPI. Inclui suporte a temas e carregamento de dados em background.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.2s;">
+                    carregar_perfil_por_id_cached (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Carrega perfil (cache)</span>
+                    <span class="tooltiptext">Carrega os dados completos de um perfil pelo seu ID, utilizando um cache LRU para otimizar o desempenho.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada Web -->
+        <div class="layer layer-web">
+            <div class="layer-title">Interface Web</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 1.25s;">
+                    templates (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Templates HTML</span>
+                    <span class="tooltiptext">Diretório contendo os templates HTML usados para renderizar a interface web. Utiliza a engine Jinja2 para gerar HTML dinamicamente.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.3s;">
+                    static (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Arquivos estáticos</span>
+                    <span class="tooltiptext">Diretório contendo os arquivos estáticos (CSS, JavaScript, imagens) usados na interface web.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.35s;">
+                    index (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Rota principal</span>
+                    <span class="tooltiptext">Rota principal da aplicação web que carrega, busca e renderiza os perfis.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.4s;">
+                    new_match (match-profilerv3-web-dash-full-themes-fastapi.py)
+                    <span class="component-desc">Rota novo match</span>
+                    <span class="tooltiptext">Rota que redireciona para a raiz para obter um novo match.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada Logging -->
+        <div class="layer layer-logging">
+            <div class="layer-title">Logging</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 1.45s;">
+                    logging (geraprofilesv3.py, match-profilerv3-web-dash-full-themes-fastapi.py, etc.)
+                    <span class="component-desc">Geração de logs</span>
+                    <span class="tooltiptext">Módulo `logging` utilizado em diversos scripts para registrar eventos e informações de depuração.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.5s;">
+                    log-dashboard-real-time-v4.py
+                    <span class="component-desc">Dashboard de logs</span>
+                    <span class="tooltiptext">Script que implementa um dashboard para monitorar e analisar logs em tempo real. Utiliza Flask para criar a interface web e Pandas para processar os dados dos logs.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada Testing -->
+        <div class="layer layer-testing">
+            <div class="layer-title">Testes</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 1.55s;">
+                    test-v1-match-profilerv3-web-dash-full-themes.py
+                    <span class="component-desc">Testes automatizados</span>
+                    <span class="tooltiptext">Script que contém testes unitários e de integração para o sistema de matchmaking. Utiliza o framework `unittest` para definir e executar os testes.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.6s;">
+                    test-api-flask-log
+                    <span class="component-desc">Logs de testes</span>
+                    <span class="tooltiptext">Diretório que armazena os logs gerados durante a execução dos testes automatizados.</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script JS opcional -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const components = document.querySelectorAll('.component');
+            components.forEach((comp, index) => {
+                if (!comp.style.animationDelay) {
+                    comp.style.animationDelay = `${index * 0.05 + 0.1}s`;
+                }
+            });
+        });
+    </script>
+
+
+        
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+2025-04-01 12:32:37,333 - INFO - [MainThread] - <module> - --- Application Start ---
+2025-04-01 12:32:37,333 - INFO - [MainThread] - <module> - Checking database existence...
+2025-04-01 12:32:37,333 - INFO - [MainThread] - <module> - Database files found.
+2025-04-01 12:32:37,334 - INFO - [MainThread] - start_background_load - Starting background data loading thread...
+2025-04-01 12:32:37,334 - INFO - [DataLoaderThread] - load_data_and_build_index - Initiating data load and FAISS index build...
+2025-04-01 12:32:37,334 - INFO - [DataLoaderThread] - load_data_and_build_index - Loading embeddings from: databases_v3\embeddings_perfis_v3.db
+2025-04-01 12:32:37,335 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Connecting to embedding DB: databases_v3\embeddings_perfis_v3.db
+2025-04-01 12:32:37,367 - INFO - [MainThread] - log_info - Serving on http://127.0.0.1:8881
+2025-04-01 12:32:37,383 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Processing 20000 rows from embeddings table...
+2025-04-01 12:32:37,383 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Detected embedding dimension: 64. Expected blob size: 256 bytes.
+2025-04-01 12:32:37,425 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Successfully created embedding matrix with shape: (20000, 64)
+2025-04-01 12:32:37,430 - INFO - [DataLoaderThread] - load_data_and_build_index - Successfully loaded 20000 embeddings with dimension 64.
+2025-04-01 12:32:37,431 - INFO - [DataLoaderThread] - load_data_and_build_index - Shape of embeddings matrix: (20000, 64)
+2025-04-01 12:32:37,431 - INFO - [DataLoaderThread] - load_data_and_build_index - Checking consistency with profiles DB: databases_v3\perfis_jogadores_v3.db
+2025-04-01 12:32:37,463 - INFO - [DataLoaderThread] - load_data_and_build_index - Found 20000 profiles in the profiles database.
+2025-04-01 12:32:37,466 - INFO - [DataLoaderThread] - load_data_and_build_index - Building FAISS index...
+2025-04-01 12:32:37,469 - INFO - [DataLoaderThread] - load_data_and_build_index - Embeddings normalized (L2) for FAISS index.
+2025-04-01 12:32:37,470 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Initializing FAISS IndexFlatIP with dimension 64
+2025-04-01 12:32:37,470 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Adding 20000 normalized vectors to the FAISS index...
+2025-04-01 12:32:37,472 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Vectors added successfully.
+2025-04-01 12:32:37,472 - INFO - [DataLoaderThread] - load_data_and_build_index - FAISS index built successfully. Index type: IndexFlatIP, Is trained: True, Total vectors: 20000
+2025-04-01 12:32:37,473 - INFO - [DataLoaderThread] - load_data_and_build_index - --- Data loading and index build complete ---
+2025-04-01 12:32:39,322 - INFO - [waitress-0] - index - Request received for index route.
+2025-04-01 12:32:39,323 - INFO - [waitress-0] - index - Selected random origin profile ID: 4131
+2025-04-01 12:32:39,323 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 4131
+2025-04-01 12:32:39,324 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 4131
+2025-04-01 12:32:39,326 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.        0.8754231 0.8661506 0.8649753 0.8633235]
+2025-04-01 12:32:39,415 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:39,416 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Found 44 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:39,416 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:32:39,416 - INFO - [waitress-0] - index - Finished processing index request for ID 4131. Duration: 0.094s. Found 10 matches.
+2025-04-01 12:32:40,320 - INFO - [waitress-1] - index - Request received for index route.
+2025-04-01 12:32:40,320 - INFO - [waitress-1] - index - Selected random origin profile ID: 14110
+2025-04-01 12:32:40,321 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 14110
+2025-04-01 12:32:40,322 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 14110
+2025-04-01 12:32:40,323 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         1.         1.         0.88251704 0.88251704]
+2025-04-01 12:32:40,419 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:40,420 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Found 14 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:40,420 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:32:40,420 - INFO - [waitress-1] - index - Finished processing index request for ID 14110. Duration: 0.100s. Found 10 matches.
+2025-04-01 12:32:49,785 - INFO - [waitress-2] - index - Request received for index route.
+2025-04-01 12:32:49,785 - INFO - [waitress-2] - index - Selected random origin profile ID: 2091
+2025-04-01 12:32:49,785 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 2091
+2025-04-01 12:32:49,786 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 2091
+2025-04-01 12:32:49,787 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [0.99999994 0.99999994 0.99999994 0.99999994 0.8749696 ]
+2025-04-01 12:32:49,873 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:49,873 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Found 14 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:49,874 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:32:49,874 - INFO - [waitress-2] - index - Finished processing index request for ID 2091. Duration: 0.089s. Found 10 matches.
+2025-04-01 12:32:49,888 - INFO - [waitress-3] - index - Request received for index route.
+2025-04-01 12:32:49,888 - INFO - [waitress-3] - index - Selected random origin profile ID: 7845
+2025-04-01 12:32:49,888 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 7845
+2025-04-01 12:32:49,889 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 7845
+2025-04-01 12:32:49,890 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.8923002  0.89173955 0.88791597 0.8835809 ]
+2025-04-01 12:32:49,969 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:49,969 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Found 8 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:49,969 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Selected Top 8 neighbors after final ranking.
+2025-04-01 12:32:49,970 - INFO - [waitress-3] - index - Finished processing index request for ID 7845. Duration: 0.082s. Found 8 matches.
+2025-04-01 12:32:49,982 - INFO - [waitress-4] - new_match - Redirecting to generate new match via /new_match route.
+2025-04-01 12:32:49,985 - INFO - [waitress-5] - index - Request received for index route.
+2025-04-01 12:32:49,986 - INFO - [waitress-5] - index - Selected random origin profile ID: 126
+2025-04-01 12:32:49,986 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 126
+2025-04-01 12:32:49,987 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 126
+2025-04-01 12:32:49,988 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1. 1. 1. 1. 1.]
+2025-04-01 12:32:50,074 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:50,074 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Found 50 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:50,075 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:32:50,075 - INFO - [waitress-5] - index - Finished processing index request for ID 126. Duration: 0.090s. Found 10 matches.
+2025-04-01 12:32:50,088 - INFO - [waitress-6] - index - Request received for index route.
+2025-04-01 12:32:50,088 - INFO - [waitress-6] - index - Selected random origin profile ID: 13545
+2025-04-01 12:32:50,089 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 13545
+2025-04-01 12:32:50,089 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 13545
+2025-04-01 12:32:50,090 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.8790689  0.8677304  0.86545706 0.85906273]
+2025-04-01 12:32:50,167 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:50,167 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Found 28 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:50,167 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:32:50,168 - INFO - [waitress-6] - index - Finished processing index request for ID 13545. Duration: 0.080s. Found 10 matches.
+2025-04-01 12:32:50,182 - INFO - [waitress-7] - index - Request received for index route.
+2025-04-01 12:32:50,182 - INFO - [waitress-7] - index - Selected random origin profile ID: 17243
+2025-04-01 12:32:50,182 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 17243
+2025-04-01 12:32:50,185 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 17243
+2025-04-01 12:32:50,187 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.99999994 0.88073546 0.87857676 0.87857664]
+2025-04-01 12:32:50,275 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:50,275 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Found 34 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:50,275 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:32:50,276 - INFO - [waitress-7] - index - Finished processing index request for ID 17243. Duration: 0.093s. Found 10 matches.
+2025-04-01 12:39:10,799 - INFO - [waitress-0] - index - Request received for index route.
+2025-04-01 12:39:10,800 - INFO - [waitress-0] - index - Selected random origin profile ID: 2781
+2025-04-01 12:39:10,800 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 2781
+2025-04-01 12:39:10,801 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 2781
+2025-04-01 12:39:10,803 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         1.         0.87650585 0.8710145  0.86755717]
+2025-04-01 12:39:10,877 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:10,877 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Found 11 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:10,877 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:10,878 - INFO - [waitress-0] - index - Finished processing index request for ID 2781. Duration: 0.079s. Found 10 matches.
+2025-04-01 12:39:10,891 - INFO - [waitress-1] - index - Request received for index route.
+2025-04-01 12:39:10,891 - INFO - [waitress-1] - index - Selected random origin profile ID: 19598
+2025-04-01 12:39:10,891 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 19598
+2025-04-01 12:39:10,893 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 19598
+2025-04-01 12:39:10,894 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.99999994 0.8743957  0.8743957  0.8738179 ]
+2025-04-01 12:39:10,973 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:10,973 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Found 62 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:10,973 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:10,974 - INFO - [waitress-1] - index - Finished processing index request for ID 19598. Duration: 0.083s. Found 10 matches.
+2025-04-01 12:39:10,990 - INFO - [waitress-2] - new_match - Redirecting to generate new match via /new_match route.
+2025-04-01 12:39:10,993 - INFO - [waitress-3] - index - Request received for index route.
+2025-04-01 12:39:10,993 - INFO - [waitress-3] - index - Selected random origin profile ID: 15345
+2025-04-01 12:39:10,994 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 15345
+2025-04-01 12:39:10,995 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 15345
+2025-04-01 12:39:10,996 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.        1.        0.8761178 0.8728932 0.8728932]
+2025-04-01 12:39:11,092 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:11,093 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Found 23 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:11,093 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:11,093 - INFO - [waitress-3] - index - Finished processing index request for ID 15345. Duration: 0.100s. Found 10 matches.
+2025-04-01 12:39:11,108 - INFO - [waitress-4] - index - Request received for index route.
+2025-04-01 12:39:11,108 - INFO - [waitress-4] - index - Selected random origin profile ID: 8879
+2025-04-01 12:39:11,108 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 8879
+2025-04-01 12:39:11,109 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 8879
+2025-04-01 12:39:11,110 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.87246907 0.87044895 0.86651284 0.8629335 ]
+2025-04-01 12:39:11,184 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:11,185 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Found 29 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:11,185 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:11,185 - INFO - [waitress-4] - index - Finished processing index request for ID 8879. Duration: 0.078s. Found 10 matches.
+2025-04-01 12:39:11,200 - INFO - [waitress-5] - index - Request received for index route.
+2025-04-01 12:39:11,200 - INFO - [waitress-5] - index - Selected random origin profile ID: 8197
+2025-04-01 12:39:11,200 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 8197
+2025-04-01 12:39:11,201 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 8197
+2025-04-01 12:39:11,201 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [0.99999994 0.86785614 0.8678561  0.8678561  0.8552544 ]
+2025-04-01 12:39:11,295 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:11,296 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Found 15 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:11,296 - INFO - [waitress-5] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:11,296 - INFO - [waitress-5] - index - Finished processing index request for ID 8197. Duration: 0.096s. Found 10 matches.
+2025-04-01 12:39:29,306 - INFO - [waitress-6] - index - Request received for index route.
+2025-04-01 12:39:29,306 - INFO - [waitress-6] - index - Selected random origin profile ID: 19756
+2025-04-01 12:39:29,306 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 19756
+2025-04-01 12:39:29,308 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 19756
+2025-04-01 12:39:29,309 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.        1.        0.8749973 0.8709516 0.8678067]
+2025-04-01 12:39:29,383 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:29,384 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Found 11 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:29,384 - INFO - [waitress-6] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:29,384 - INFO - [waitress-6] - index - Finished processing index request for ID 19756. Duration: 0.078s. Found 10 matches.
+2025-04-01 12:39:29,398 - INFO - [waitress-7] - index - Request received for index route.
+2025-04-01 12:39:29,399 - INFO - [waitress-7] - index - Selected random origin profile ID: 16551
+2025-04-01 12:39:29,399 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 16551
+2025-04-01 12:39:29,399 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 16551
+2025-04-01 12:39:29,400 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.0000002  1.         0.89643586 0.89138126 0.8899262 ]
+2025-04-01 12:39:29,479 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:29,480 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Found 33 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:29,480 - INFO - [waitress-7] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:29,481 - INFO - [waitress-7] - index - Finished processing index request for ID 16551. Duration: 0.084s. Found 10 matches.
+2025-04-01 12:39:29,495 - INFO - [waitress-0] - new_match - Redirecting to generate new match via /new_match route.
+2025-04-01 12:39:29,499 - INFO - [waitress-1] - index - Request received for index route.
+2025-04-01 12:39:29,499 - INFO - [waitress-1] - index - Selected random origin profile ID: 19346
+2025-04-01 12:39:29,499 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 19346
+2025-04-01 12:39:29,500 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 19346
+2025-04-01 12:39:29,502 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         1.         0.8676096  0.86665225 0.86665225]
+2025-04-01 12:39:29,581 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:29,581 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Found 24 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:29,582 - INFO - [waitress-1] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:29,582 - INFO - [waitress-1] - index - Finished processing index request for ID 19346. Duration: 0.083s. Found 10 matches.
+2025-04-01 12:39:29,596 - INFO - [waitress-2] - index - Request received for index route.
+2025-04-01 12:39:29,597 - INFO - [waitress-2] - index - Selected random origin profile ID: 7313
+2025-04-01 12:39:29,597 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 7313
+2025-04-01 12:39:29,598 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 7313
+2025-04-01 12:39:29,599 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.8671759  0.8671758  0.86307716 0.86005116]
+2025-04-01 12:39:29,685 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:29,686 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Found 14 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:29,686 - INFO - [waitress-2] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:29,687 - INFO - [waitress-2] - index - Finished processing index request for ID 7313. Duration: 0.090s. Found 10 matches.
+2025-04-01 12:39:29,699 - INFO - [waitress-3] - index - Request received for index route.
+2025-04-01 12:39:29,700 - INFO - [waitress-3] - index - Selected random origin profile ID: 11555
+2025-04-01 12:39:29,700 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 11555
+2025-04-01 12:39:29,701 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 11555
+2025-04-01 12:39:29,702 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         1.         0.8666762  0.8615436  0.85564965]
+2025-04-01 12:39:29,784 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:39:29,784 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Found 46 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:39:29,784 - INFO - [waitress-3] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:39:29,784 - INFO - [waitress-3] - index - Finished processing index request for ID 11555. Duration: 0.085s. Found 10 matches.
+2025-04-01 12:40:22,416 - INFO - [waitress-4] - index - Request received for index route.
+2025-04-01 12:40:22,416 - INFO - [waitress-4] - index - Selected random origin profile ID: 76
+2025-04-01 12:40:22,417 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 76
+2025-04-01 12:40:22,418 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 76
+2025-04-01 12:40:22,419 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.88140875 0.8800996  0.87773097 0.87669444]
+2025-04-01 12:40:22,527 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:40:22,527 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Found 39 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:40:22,527 - INFO - [waitress-4] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:40:22,528 - INFO - [waitress-4] - index - Finished processing index request for ID 76. Duration: 0.112s. Found 10 matches.

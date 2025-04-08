@@ -1,0 +1,13 @@
+2025-04-01 11:26:20,051 - INFO - [MainThread] - Verificando existência dos bancos de dados...
+2025-04-01 11:26:20,052 - INFO - [MainThread] - Bancos de dados encontrados.
+2025-04-01 11:26:20,053 - INFO - [DataLoaderThread] - Iniciando carregamento de dados e construção do índice FAISS...
+2025-04-01 11:26:20,111 - INFO - [MainThread] - Serving on http://127.0.0.1:8881
+2025-04-01 11:26:20,142 - INFO - [DataLoaderThread] - 20000 embeddings carregados.
+2025-04-01 11:26:20,144 - INFO - [DataLoaderThread] - Índice FAISS construído com sucesso.
+2025-04-01 11:26:20,144 - INFO - [DataLoaderThread] - Carregamento de dados e índice concluído.
+2025-04-01 11:26:29,858 - INFO - [waitress-0] - Iniciando busca para perfil de origem ID: 13479
+2025-04-01 11:26:29,865 - INFO - [waitress-0] - Busca FAISS retornou 201 índices.
+2025-04-01 11:26:29,945 - INFO - [waitress-0] - Encontrados 10 vizinhos válidos após score e filtragem.
+2025-04-01 11:26:35,903 - INFO - [waitress-2] - Iniciando busca para perfil de origem ID: 2800
+2025-04-01 11:26:35,907 - INFO - [waitress-2] - Busca FAISS retornou 201 índices.
+2025-04-01 11:26:35,990 - INFO - [waitress-2] - Encontrados 10 vizinhos válidos após score e filtragem.

@@ -1,0 +1,33 @@
+2025-04-01 15:29:02,365 - INFO - [data-cubic-viz-v1.py:78 - <module>] - Logging initialized.
+2025-04-01 15:29:02,388 - INFO - [data-cubic-viz-v1.py:127 - parse_arguments] - Effective Configuration:
+2025-04-01 15:29:02,388 - INFO - [data-cubic-viz-v1.py:128 - parse_arguments] -   Profile DB: databases_v3\perfis_jogadores_v3.db
+2025-04-01 15:29:02,388 - INFO - [data-cubic-viz-v1.py:129 - parse_arguments] -   Embeddings DB: databases_v3\embeddings_perfis_v3.db
+2025-04-01 15:29:02,388 - INFO - [data-cubic-viz-v1.py:130 - parse_arguments] -   Output Dir: data-dash-viewer
+2025-04-01 15:29:02,389 - INFO - [data-cubic-viz-v1.py:131 - parse_arguments] -   Target Neighbors: 10
+2025-04-01 15:29:02,390 - INFO - [data-cubic-viz-v1.py:132 - parse_arguments] -   Embedding Dim: 64
+2025-04-01 15:29:02,390 - INFO - [data-cubic-viz-v1.py:133 - parse_arguments] -   FAISS Search Factor: 30
+2025-04-01 15:29:02,390 - INFO - [data-cubic-viz-v1.py:134 - parse_arguments] -   Origin Profile ID: Random
+2025-04-01 15:29:02,390 - INFO - [data-cubic-viz-v1.py:725 - main] - Loading embeddings and building FAISS index...
+2025-04-01 15:29:02,391 - INFO - [data-cubic-viz-v1.py:335 - load_embeddings_and_map] - Connecting to embedding database: databases_v3\embeddings_perfis_v3.db
+2025-04-01 15:29:02,419 - INFO - [data-cubic-viz-v1.py:348 - load_embeddings_and_map] - Processing 20000 rows from embeddings table...
+2025-04-01 15:29:02,419 - INFO - [data-cubic-viz-v1.py:365 - load_embeddings_and_map] - Detected embedding dimension: 64
+2025-04-01 15:29:02,444 - INFO - [data-cubic-viz-v1.py:406 - load_embeddings_and_map] - Successfully loaded 20000 valid embeddings.
+2025-04-01 15:29:02,444 - INFO - [data-cubic-viz-v1.py:407 - load_embeddings_and_map] - Embedding matrix created with shape: (20000, 64)
+2025-04-01 15:29:02,445 - INFO - [data-cubic-viz-v1.py:412 - load_embeddings_and_map] - Building FAISS IndexFlatL2 with dimension 64...
+2025-04-01 15:29:02,448 - INFO - [data-cubic-viz-v1.py:415 - load_embeddings_and_map] - FAISS index built. Is trained: True, Total vectors: 20000
+2025-04-01 15:29:02,452 - INFO - [data-cubic-viz-v1.py:737 - main] - Data loaded: 20000 profiles with embeddings.
+2025-04-01 15:29:02,454 - INFO - [data-cubic-viz-v1.py:754 - main] - No profile ID provided. Randomly selected origin ID: 7925
+2025-04-01 15:29:02,455 - INFO - [data-cubic-viz-v1.py:777 - main] - Found embedding for origin ID 7925 at matrix index 7924.
+2025-04-01 15:29:02,455 - INFO - [data-cubic-viz-v1.py:797 - main] - Searching for 301 nearest neighbors (L2 distance) for ID 7925 using FAISS...
+2025-04-01 15:29:02,460 - INFO - [data-cubic-viz-v1.py:820 - main] - FAISS search returned 301 raw candidates (including self if found).
+2025-04-01 15:29:02,460 - INFO - [data-cubic-viz-v1.py:839 - main] - Calculating custom similarity scores for FAISS candidates and filtering...
+2025-04-01 15:29:02,958 - INFO - [data-cubic-viz-v1.py:894 - main] - Found 1 candidates passing custom score criteria.
+2025-04-01 15:29:02,958 - INFO - [data-cubic-viz-v1.py:911 - main] - Selected top 1 neighbors based on custom score.
+2025-04-01 15:29:02,959 - INFO - [data-cubic-viz-v1.py:962 - main] - Combined embeddings matrix shape for PCA: (2, 64)
+2025-04-01 15:29:02,959 - WARNING - [data-cubic-viz-v1.py:998 - main] - Only 2 points (origin + neighbors). Attempting PCA to 1D and padding Z coordinate(s).
+2025-04-01 15:29:02,959 - INFO - [data-cubic-viz-v1.py:457 - reduce_dimensionality] - Performing PCA to reduce dimensionality to 1...
+2025-04-01 15:29:02,960 - INFO - [data-cubic-viz-v1.py:461 - reduce_dimensionality] - PCA completed. Shape of reduced coordinates: (2, 1). Explained variance ratio by 1 components: 1.000
+2025-04-01 15:29:02,961 - INFO - [data-cubic-viz-v1.py:1015 - main] - Padding PCA results with 2 zero column(s).
+2025-04-01 15:29:02,961 - INFO - [data-cubic-viz-v1.py:1038 - main] - Creating Plotly 3D figure...
+2025-04-01 15:29:03,716 - INFO - [data-cubic-viz-v1.py:1063 - main] - Attempting to generate HTML file: data-dash-viewer\profile_7925_neighbors_score_20250401_152903_e347be0a.html
+2025-04-01 15:29:03,730 - INFO - [data-cubic-viz-v1.py:707 - generate_html_file] - Successfully generated HTML visualization: data-dash-viewer\profile_7925_neighbors_score_20250401_152903_e347be0a.html

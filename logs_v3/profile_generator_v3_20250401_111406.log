@@ -1,0 +1,12 @@
+2025-04-01 11:14:06,518 - INFO - --- Script Iniciado ---
+2025-04-01 11:14:07,082 - INFO - Tabela verificada/criada com sucesso em databases_v3\perfis_jogadores_v3.db
+2025-04-01 11:14:07,321 - INFO - Tabela verificada/criada com sucesso em databases_v3\vetores_perfis_v3.db
+2025-04-01 11:14:07,507 - INFO - Tabela verificada/criada com sucesso em databases_v3\embeddings_perfis_v3.db
+2025-04-01 11:14:07,799 - INFO - Tabela verificada/criada com sucesso em databases_v3\clusters_perfis_v3.db
+2025-04-01 11:14:08,931 - WARNING - Não foi possível determinar IDs inseridos com precisão via lastrowid. Estimando.
+2025-04-01 11:14:09,218 - INFO - 20000 perfis inseridos com sucesso em 'databases_v3\perfis_jogadores_v3.db'. IDs estimados: [1, 2, 3, 4, 5]...[19996, 19997, 19998, 19999, 20000] (Total: 20000)
+2025-04-01 11:14:10,036 - INFO - 20000 registros salvos com sucesso em 'databases_v3\vetores_perfis_v3.db.vetores'.
+2025-04-01 11:14:10,353 - INFO - 20000 registros salvos com sucesso em 'databases_v3\embeddings_perfis_v3.db.embeddings'.
+2025-04-01 11:14:10,499 - INFO - Clustering KMeans concluído com 141 clusters para 20000 embeddings.
+2025-04-01 11:14:10,665 - INFO - 20000 atribuições de cluster salvas com sucesso em 'databases_v3\clusters_perfis_v3.db'.
+2025-04-01 11:14:10,683 - INFO - --- Script Finalizado ---

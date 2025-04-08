@@ -1,0 +1,30 @@
+2025-04-01 11:30:10,204 - INFO - [MainThread] - Checking database existence...
+2025-04-01 11:30:10,204 - INFO - [MainThread] - Database files found.
+2025-04-01 11:30:10,205 - INFO - [DataLoaderThread] - Initiating data load and FAISS index build...
+2025-04-01 11:30:10,257 - INFO - [MainThread] - Serving on http://127.0.0.1:8881
+2025-04-01 11:30:10,306 - INFO - [DataLoaderThread] - 20000 embeddings loaded.
+2025-04-01 11:30:10,308 - INFO - [DataLoaderThread] - FAISS index built successfully.
+2025-04-01 11:30:10,308 - INFO - [DataLoaderThread] - Data loading and index build complete.
+2025-04-01 11:30:14,787 - INFO - [waitress-0] - Starting match search for origin ID: 14117
+2025-04-01 11:30:14,791 - INFO - [waitress-0] - FAISS search returned 201 indices.
+2025-04-01 11:30:14,860 - INFO - [waitress-0] - Found 10 valid neighbors after scoring and filtering.
+2025-04-01 11:31:22,868 - INFO - [waitress-1] - Redirecionando para gerar novo match.
+2025-04-01 11:31:22,885 - INFO - [waitress-2] - Starting match search for origin ID: 1118
+2025-04-01 11:31:22,886 - INFO - [waitress-2] - FAISS search returned 201 indices.
+2025-04-01 11:31:22,978 - INFO - [waitress-2] - Found 10 valid neighbors after scoring and filtering.
+2025-04-01 11:31:24,067 - INFO - [waitress-3] - Redirecionando para gerar novo match.
+2025-04-01 11:31:24,072 - INFO - [waitress-4] - Starting match search for origin ID: 15850
+2025-04-01 11:31:24,074 - INFO - [waitress-4] - FAISS search returned 201 indices.
+2025-04-01 11:31:24,171 - INFO - [waitress-4] - Found 10 valid neighbors after scoring and filtering.
+2025-04-01 11:31:25,368 - INFO - [waitress-5] - Redirecionando para gerar novo match.
+2025-04-01 11:31:25,377 - INFO - [waitress-0] - Starting match search for origin ID: 7751
+2025-04-01 11:31:25,381 - INFO - [waitress-0] - FAISS search returned 201 indices.
+2025-04-01 11:31:25,468 - INFO - [waitress-0] - Found 10 valid neighbors after scoring and filtering.
+2025-04-01 11:31:26,357 - INFO - [waitress-1] - Redirecionando para gerar novo match.
+2025-04-01 11:31:26,366 - INFO - [waitress-2] - Starting match search for origin ID: 18861
+2025-04-01 11:31:26,370 - INFO - [waitress-2] - FAISS search returned 201 indices.
+2025-04-01 11:31:26,456 - INFO - [waitress-2] - Found 10 valid neighbors after scoring and filtering.
+2025-04-01 11:31:27,183 - INFO - [waitress-3] - Redirecionando para gerar novo match.
+2025-04-01 11:31:27,188 - INFO - [waitress-4] - Starting match search for origin ID: 4167
+2025-04-01 11:31:27,191 - INFO - [waitress-4] - FAISS search returned 201 indices.
+2025-04-01 11:31:27,281 - INFO - [waitress-4] - Found 10 valid neighbors after scoring and filtering.

@@ -1,0 +1,144 @@
+{
+    "run_id": "163f6aee2d0a06d2",
+    "timestamp": "2025-04-01T12:39:28.265304",
+    "target_script": "match-profilerv3-web-dash-full-themes.py",
+    "status": "PASS",
+    "phases": {
+        "unit_integration": {
+            "status": "PASS",
+            "tests": [
+                {
+                    "name": "Import Target Script",
+                    "status": "PASS",
+                    "details": "Loaded via importlib as 'match_profilerv3_web_dash_full_themes'",
+                    "log_time": "2025-04-01T12:39:28.270824"
+                },
+                {
+                    "name": "Background Data Load",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.277296"
+                },
+                {
+                    "name": "test_00_module_import_and_load_check",
+                    "status": "PASS",
+                    "details": "Import OK. Data Load Status: PASS",
+                    "log_time": "2025-04-01T12:39:29.277296"
+                },
+                {
+                    "name": "test_01_config_variables",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.278299"
+                },
+                {
+                    "name": "test_02_safe_split_and_strip",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.278299"
+                },
+                {
+                    "name": "test_03_jaccard_similarity",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.278299"
+                },
+                {
+                    "name": "test_04_availability_similarity",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.278299"
+                },
+                {
+                    "name": "test_05_interaction_similarity",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.279299"
+                },
+                {
+                    "name": "test_06_calculate_custom_similarity",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.279299"
+                },
+                {
+                    "name": "test_07_load_profile_cached",
+                    "status": "PASS",
+                    "details": "Loaded valid ID 9186",
+                    "log_time": "2025-04-01T12:39:29.282800"
+                },
+                {
+                    "name": "test_07_load_profile_cached",
+                    "status": "PASS",
+                    "details": "Correctly handled invalid ID 21000",
+                    "log_time": "2025-04-01T12:39:29.287810"
+                },
+                {
+                    "name": "test_08_embeddings_and_faiss_check",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.287810"
+                },
+                {
+                    "name": "test_09_buscar_e_rankear_vizinhos",
+                    "status": "PASS",
+                    "details": "Search for valid ID '16540' completed. Found 0 matches.",
+                    "log_time": "2025-04-01T12:39:29.293317"
+                },
+                {
+                    "name": "test_09_buscar_e_rankear_vizinhos",
+                    "status": "PASS",
+                    "details": "Correctly handled invalid origin ID '21000'",
+                    "log_time": "2025-04-01T12:39:29.298332"
+                }
+            ]
+        },
+        "api": {
+            "status": "PASS",
+            "tests": [
+                {
+                    "name": "Start Flask Server",
+                    "status": "PASS",
+                    "details": "",
+                    "log_time": "2025-04-01T12:39:29.396031"
+                },
+                {
+                    "name": "test_10_api_root_get",
+                    "status": "PASS",
+                    "details": "Status: 200, Content-Type: text/html; charset=utf-8",
+                    "log_time": "2025-04-01T12:39:29.493778"
+                },
+                {
+                    "name": "test_11_api_new_match_redirect",
+                    "status": "PASS",
+                    "details": "Status: 302, Location: /?t=1743521969.495788",
+                    "log_time": "2025-04-01T12:39:29.497789"
+                },
+                {
+                    "name": "test_12_api_static_assets_implicit",
+                    "status": "PASS",
+                    "details": "Essential static asset references seem present.",
+                    "log_time": "2025-04-01T12:39:29.594988"
+                },
+                {
+                    "name": "test_13_api_theme_selector_presence",
+                    "status": "PASS",
+                    "details": "Theme selector element found. Default theme option verified.",
+                    "log_time": "2025-04-01T12:39:29.697692"
+                },
+                {
+                    "name": "test_14_api_content_rendering_check",
+                    "status": "PASS",
+                    "details": "Origin profile structure elements (IDs) found. Similar profiles structure elements (IDs) found. (Structure present, visibility not fully checked)",
+                    "log_time": "2025-04-01T12:39:29.800379"
+                },
+                {
+                    "name": "Stop Flask Server",
+                    "status": "PASS",
+                    "details": "Terminated PID 2672",
+                    "log_time": "2025-04-01T12:39:29.810898"
+                }
+            ]
+        }
+    }
+}

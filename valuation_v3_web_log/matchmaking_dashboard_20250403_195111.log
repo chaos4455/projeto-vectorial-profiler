@@ -1,0 +1,31 @@
+2025-04-03 19:51:11,368 - INFO - [MainThread] - <module> - --- Application Start ---
+2025-04-03 19:51:11,368 - INFO - [MainThread] - <module> - Checking database existence...
+2025-04-03 19:51:11,368 - INFO - [MainThread] - <module> - Database files found.
+2025-04-03 19:51:11,368 - INFO - [MainThread] - start_background_load - Starting background data loading thread...
+2025-04-03 19:51:11,369 - INFO - [DataLoaderThread] - load_data_and_build_index - Initiating data load and FAISS index build...
+2025-04-03 19:51:11,369 - INFO - [DataLoaderThread] - load_data_and_build_index - Loading embeddings from: databases_v3\embeddings_perfis_v3.db
+2025-04-03 19:51:11,369 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Connecting to embedding DB: databases_v3\embeddings_perfis_v3.db
+2025-04-03 19:51:11,423 - INFO - [MainThread] - log_info - Serving on http://127.0.0.1:8881
+2025-04-03 19:51:11,456 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Processing 20000 rows from embeddings table...
+2025-04-03 19:51:11,456 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Detected embedding dimension: 64. Expected blob size: 256 bytes.
+2025-04-03 19:51:11,494 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Successfully created embedding matrix with shape: (20000, 64)
+2025-04-03 19:51:11,499 - INFO - [DataLoaderThread] - load_data_and_build_index - Successfully loaded 20000 embeddings with dimension 64.
+2025-04-03 19:51:11,499 - INFO - [DataLoaderThread] - load_data_and_build_index - Shape of embeddings matrix: (20000, 64)
+2025-04-03 19:51:11,499 - INFO - [DataLoaderThread] - load_data_and_build_index - Checking consistency with profiles DB: databases_v3\perfis_jogadores_v3.db
+2025-04-03 19:51:11,609 - INFO - [DataLoaderThread] - load_data_and_build_index - Found 20000 profiles in the profiles database.
+2025-04-03 19:51:11,611 - INFO - [DataLoaderThread] - load_data_and_build_index - Building FAISS index...
+2025-04-03 19:51:11,622 - INFO - [DataLoaderThread] - load_data_and_build_index - Embeddings normalized (L2) for FAISS index.
+2025-04-03 19:51:11,622 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Initializing FAISS IndexFlatIP with dimension 64
+2025-04-03 19:51:11,624 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Adding 20000 normalized vectors to the FAISS index...
+2025-04-03 19:51:11,627 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Vectors added successfully.
+2025-04-03 19:51:11,627 - INFO - [DataLoaderThread] - load_data_and_build_index - FAISS index built successfully. Index type: IndexFlatIP, Is trained: True, Total vectors: 20000
+2025-04-03 19:51:11,627 - INFO - [DataLoaderThread] - load_data_and_build_index - --- Data loading and index build complete ---
+2025-04-03 19:51:20,332 - INFO - [waitress-0] - index - Request received for index route.
+2025-04-03 19:51:20,333 - INFO - [waitress-0] - index - Selected random origin profile ID: 1604
+2025-04-03 19:51:20,333 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 1604
+2025-04-03 19:51:20,334 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 1604
+2025-04-03 19:51:20,343 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.         0.87755525 0.8698742  0.86947745 0.8694774 ]
+2025-04-03 19:51:20,510 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-03 19:51:20,510 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Found 12 candidates passing ALL thresholds before final sorting.
+2025-04-03 19:51:20,510 - INFO - [waitress-0] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-03 19:51:20,511 - INFO - [waitress-0] - index - Finished processing index request for ID 1604. Duration: 0.179s. Found 10 matches.

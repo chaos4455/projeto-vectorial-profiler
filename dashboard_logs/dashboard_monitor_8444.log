@@ -1,0 +1,167 @@
+2025-04-02 00:14:14,875 - INFO - [Dashboard] - --- Log Dashboard Starting on Port 8444 ---
+2025-04-02 00:14:14,876 - INFO - [Dashboard] - Starting background log update thread...
+2025-04-02 00:14:14,876 - INFO - [Dashboard] - Background log update thread started.
+2025-04-02 00:14:14,876 - INFO - [Dashboard] - Starting Waitress server on http://0.0.0.0:8444
+2025-04-02 00:14:14,879 - INFO - [Dashboard] - New latest log file detected: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:14:14,879 - INFO - [Dashboard] - Processing log file: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:14:14,916 - INFO - [Dashboard] - Data updated from 'matchmaking_dashboard_20250402_001013.log'. Total lines: 202, Errors: 0, Warnings: 0. Total Parse Errors: 0
+2025-04-02 00:15:56,180 - INFO - [Dashboard] - --- Log Dashboard Starting on Port 8444 ---
+2025-04-02 00:15:56,180 - INFO - [Dashboard] - Starting background log update thread...
+2025-04-02 00:15:56,181 - INFO - [Dashboard] - Background log update thread started.
+2025-04-02 00:15:56,181 - INFO - [Dashboard] - Starting Waitress server on http://0.0.0.0:8444
+2025-04-02 00:15:56,185 - INFO - [Dashboard] - New latest log file detected: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:15:56,186 - INFO - [Dashboard] - Processing log file: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:15:56,238 - INFO - [Dashboard] - Data updated from 'matchmaking_dashboard_20250402_001013.log'. Total lines: 257, Errors: 0, Warnings: 0. Total Parse Errors: 0
+2025-04-02 00:21:32,564 - INFO - [Dashboard] - --- Iniciando Dashboard de Logs na Porta 8444 ---
+2025-04-02 00:21:32,564 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:21:32,565 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:21:32,565 - INFO - [Dashboard] - Iniciando servidor Waitress em http://0.0.0.0:8444
+2025-04-02 00:21:32,567 - INFO - [Dashboard] - Primeira execução, processando: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:32,567 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:32,613 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 267, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:21:39,657 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:39,727 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 276, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:21:41,756 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:41,820 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 282, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:21:42,835 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:42,951 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 296, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:21:43,959 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:44,034 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 306, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:21:48,085 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:48,177 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 312, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:21:49,193 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:49,266 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 316, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:21:52,302 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:21:52,462 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 326, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:04,655 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:04,760 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 335, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:05,772 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:05,879 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 358, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:06,903 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:07,091 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 403, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:08,116 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:08,208 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 434, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:10,218 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:10,357 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 461, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:11,374 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:11,461 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 470, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:12,468 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:12,617 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 502, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:13,624 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:13,805 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 569, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:14,815 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:15,028 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 628, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:16,038 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:16,173 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 650, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:19,217 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:19,461 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 696, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:20,472 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:20,710 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 758, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:21,717 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:21,936 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 826, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:22,951 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:23,215 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 903, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:24,220 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:24,595 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 979, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:25,602 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:25,893 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1033, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:26,919 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:27,119 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1046, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:29,157 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:29,434 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1074, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:30,450 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:30,871 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1145, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:31,882 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:32,174 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1213, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:33,193 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:33,523 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1276, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:34,537 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:34,919 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1357, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:35,933 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:36,271 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1420, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:37,283 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:37,661 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1492, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:38,682 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:38,945 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1532, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:39,953 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:40,363 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1573, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:41,372 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:41,669 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1622, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:42,674 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:42,944 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1631, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:22:43,960 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:22:44,205 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1640, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:23:04,514 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:23:04,901 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1649, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:23:07,936 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:23:08,241 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1658, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:23:09,258 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:23:09,554 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. Linhas totais: 1668, Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:27:17,367 - INFO - [Dashboard] - --- Iniciando Dashboard de Logs na Porta 8444 ---
+2025-04-02 00:27:17,367 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:27:17,368 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:27:17,369 - INFO - [Dashboard] - Servidor Waitress escutando em http://0.0.0.0:8444
+2025-04-02 00:27:17,373 - INFO - [Dashboard] - Novo arquivo de log detectado ou primeira execução: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:27:17,373 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:27:17,695 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2280 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:30:30,682 - INFO - [Dashboard] - --- Iniciando Dashboard de Logs na Porta 8444 ---
+2025-04-02 00:30:30,682 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:30:30,683 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:30:30,684 - INFO - [Dashboard] - Servidor Waitress escutando em http://0.0.0.0:8444
+2025-04-02 00:30:30,688 - INFO - [Dashboard] - Novo arquivo de log detectado ou primeira execução: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:30:30,688 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:30:30,996 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2280 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:31:05,888 - INFO - [Dashboard] - --- Iniciando Dashboard de Logs na Porta 8444 ---
+2025-04-02 00:31:05,889 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:31:05,889 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:31:05,890 - INFO - [Dashboard] - Servidor Waitress escutando em http://0.0.0.0:8444
+2025-04-02 00:31:05,904 - INFO - [Dashboard] - Novo arquivo de log detectado ou primeira execução: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:31:05,904 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:31:06,308 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2280 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:31:10,375 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:31:10,983 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2325 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:31:11,997 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:31:12,906 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2438 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:31:13,911 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:31:14,260 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2442 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:44:26,574 - INFO - [Dashboard] - --- Iniciando Dashboard de Logs (Grafana Style) na Porta 8444 ---
+2025-04-02 00:44:26,574 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:44:26,574 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:44:26,576 - INFO - [Dashboard] - Servidor Waitress escutando em http://0.0.0.0:8444
+2025-04-02 00:44:26,579 - INFO - [Dashboard] - Novo arquivo de log detectado ou primeira execução: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:44:26,580 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:44:26,933 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2442 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:46:40,514 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:46:41,422 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2465 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:46:42,429 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:46:43,125 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2516 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:46:44,138 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:46:44,479 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2526 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:46:45,490 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:46:46,095 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2546 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:46:47,104 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:46:47,765 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2588 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:46:48,787 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:46:49,155 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2592 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:53:53,624 - INFO - [Dashboard] - --- Iniciando Dashboard Avançado de Logs na Porta 8444 ---
+2025-04-02 00:53:53,624 - INFO - [Dashboard] - psutil encontrado: True
+2025-04-02 00:53:53,625 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:53:53,625 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:53:53,627 - INFO - [Dashboard] - Servidor Waitress escutando em http://0.0.0.0:8444
+2025-04-02 00:53:53,631 - INFO - [Dashboard] - Novo arquivo de log detectado ou primeira execução: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:53:53,631 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:53:53,975 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2592 linhas válidas (2592 total lidas). Tamanho: 336498 bytes. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:55:11,704 - INFO - [Dashboard] - --- Iniciando Dashboard de Logs na Porta 8444 ---
+2025-04-02 00:55:11,704 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:55:11,705 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:55:11,706 - INFO - [Dashboard] - Servidor Waitress escutando em http://0.0.0.0:8444
+2025-04-02 00:55:11,710 - INFO - [Dashboard] - Novo arquivo de log detectado ou primeira execução: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:55:11,711 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:55:12,108 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2592 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0
+2025-04-02 00:55:53,857 - INFO - [Dashboard] - --- Iniciando Dashboard de Logs (Grafana Style) na Porta 8444 ---
+2025-04-02 00:55:53,858 - INFO - [Dashboard] - Iniciando thread de atualização de log em background...
+2025-04-02 00:55:53,858 - INFO - [Dashboard] - Thread de atualização de log em background iniciada.
+2025-04-02 00:55:53,859 - INFO - [Dashboard] - Servidor Waitress escutando em http://0.0.0.0:8444
+2025-04-02 00:55:53,864 - INFO - [Dashboard] - Novo arquivo de log detectado ou primeira execução: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:55:53,864 - INFO - [Dashboard] - Processando arquivo de log: matchmaking_dashboard_20250402_001013.log
+2025-04-02 00:55:54,264 - INFO - [Dashboard] - Dados atualizados de 'matchmaking_dashboard_20250402_001013.log'. 2592 linhas. Erros/Críticos: 0, Avisos: 0. Erros de Parse Totais: 0

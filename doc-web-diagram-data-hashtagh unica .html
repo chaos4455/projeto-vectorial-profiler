@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Arquitetura | projeto vectorial profiler | Replika AI</title>
+    <style>
+        /* Reset Básico e Estilos Globais */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #232526 0%, #414345 74%);
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 60px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Container Principal do Diagrama */
+        .diagram-container {
+            width: 95%;
+            max-width: 1200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            perspective: 1800px;
+        }
+
+        /* Estilo das Camadas */
+        .layer {
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .layer:hover {
+           /* transform: translateY(-3px) translateZ(8px); */ /* Efeito hover opcional na camada */
+        }
+
+        /* Cores e Gradientes das Camadas */
+        .layer-data { background: linear-gradient(145deg, #6a1b9a, #4a148c); } /* Roxo Escuro */
+        .layer-generation { background: linear-gradient(145deg, #0288d1, #01579b); } /* Azul Escuro */
+        .layer-similarity { background: linear-gradient(145deg, #388e3c, #1b5e20); } /* Verde Escuro */
+        .layer-visualization { background: linear-gradient(145deg, #f57c00, #e65100); } /* Laranja Escuro */
+        .layer-api { background: linear-gradient(145deg, #c62828, #b71c1c); } /* Vermelho Escuro */
+        .layer-tests { background: linear-gradient(145deg, #795548, #4e342e); } /* Marrom Escuro */
+
+        .layer-title {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sub-layer-title {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        /* Grid para os Componentes dentro das Camadas */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        /* Estilo dos Componentes Individuais */
+        .component {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #f0f8ff;
+            padding: 20px 15px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            text-align: center;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: default;
+            transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        background-color 0.35s ease;
+            opacity: 0;
+            animation: fadeInScale 0.5s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        /* Estilo para a descrição opcional dentro do componente */
+        .component-desc {
+            font-size: 0.75em;
+            color: rgba(224, 224, 224, 0.7);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Efeito Hover com Tooltip */
+        .component .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 110%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            font-size: 0.8em;
+            pointer-events: none;
+        }
+
+        .component:hover {
+            transform: scale(1.07) translateZ(18px) rotateY(4deg);
+            background-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .component:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Animação Fade-in com Escala */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .diagram-container { width: 95%; padding: 25px; }
+            .layer { padding: 20px; }
+            .layer-title { font-size: 1.4em; }
+            .sub-layer-title { font-size: 1.1em; }
+            .components-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; }
+            .component { font-size: 0.85em; padding: 15px 10px; min-height: 70px; }
+            .component-desc { font-size: 0.7em; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 20px 10px; }
+            .diagram-container { border-radius: 15px; padding: 15px; }
+            .layer { border-radius: 12px; padding: 15px;}
+            .layer-title { font-size: 1.2em; }
+            .sub-layer-title { font-size: 0.95em; }
+            .components-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
+            .component { font-size: 0.78em; padding: 12px 8px; border-radius: 8px; min-height: 60px; }
+            .component:hover { transform: scale(1.04) translateZ(8px) rotateY(0deg); }
+            .component-desc { display: none; }
+            .component .tooltiptext { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="diagram-container">
+
+        <!-- Camada de Dados -->
+        <div class="layer layer-data">
+            <div class="layer-title">Camada de Dados</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.1s;">
+                    perfis_jogadores_v6.db
+                    <span class="component-desc">Dados dos Perfis</span>
+                    <span class="tooltiptext">Banco de dados SQLite contendo informações detalhadas sobre os perfis dos jogadores (nome, idade, interesses, etc.). Inclui dados como anos de experiência, idiomas e estilo de comunicação.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.15s;">
+                    embeddings_perfis_v6.db
+                    <span class="component-desc">Embeddings dos Perfis</span>
+                    <span class="tooltiptext">Banco de dados SQLite contendo os embeddings (vetores numéricos) dos perfis, utilizados para cálculo de similaridade.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.2s;">
+                    vetores_perfis_v6.db
+                    <span class="component-desc">Vetores dos Perfis</span>
+                    <span class="tooltiptext">Banco de dados SQLite contendo vetores de características dos perfis, utilizados para clustering e outras análises.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.25s;">
+                    clusters_perfis_v6.db
+                    <span class="component-desc">Clusters dos Perfis</span>
+                    <span class="tooltiptext">Banco de dados SQLite contendo informações sobre os clusters aos quais cada perfil pertence. Pode estar incompleto (poucos dados).</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada de Geração de Perfis -->
+        <div class="layer layer-generation">
+            <div class="layer-title">Camada de Geração de Perfis</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.3s;">
+                    geraprofilesv3.py
+                    <span class="component-desc">Geração de Perfis</span>
+                    <span class="tooltiptext">Script Python responsável por gerar perfis de jogadores simulados e salvar os dados nos bancos de dados SQLite. Utiliza multiprocessing para acelerar o processo.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.35s;">
+                    Faker
+                    <span class="component-desc">Geração de Dados Falsos</span>
+                    <span class="tooltiptext">Biblioteca utilizada para gerar dados falsos (nomes, cidades, etc.) para os perfis dos jogadores.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.4s;">
+                    pandas
+                    <span class="component-desc">Manipulação de Dados</span>
+                    <span class="tooltiptext">Biblioteca utilizada para manipular os dados dos perfis em DataFrames antes de serem inseridos no banco de dados.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada de Cálculo de Similaridade -->
+        <div class="layer layer-similarity">
+            <div class="layer-title">Camada de Cálculo de Similaridade</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.45s;">
+                    match-profilerv3-web-dash-full-themes-fastapi.py
+                    <span class="component-desc">Matchmaking</span>
+                    <span class="tooltiptext">Script Python que implementa a lógica de matchmaking, buscando e rankeando vizinhos similares com base em métricas customizadas. Utiliza a biblioteca FAISS para busca eficiente. Inclui interface web com FastAPI.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.5s;">
+                    jaccard_similarity
+                    <span class="component-desc">Similaridade Jaccard</span>
+                    <span class="tooltiptext">Função que calcula a similaridade Jaccard entre dois conjuntos de interesses.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.55s;">
+                    availability_similarity
+                    <span class="component-desc">Similaridade de Disponibilidade</span>
+                    <span class="tooltiptext">Função que calcula a similaridade entre os horários de disponibilidade dos jogadores.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.6s;">
+                    interaction_similarity
+                    <span class="component-desc">Similaridade de Interação</span>
+                    <span class="tooltiptext">Função que calcula a similaridade com base no tipo de interação desejada pelos jogadores.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.65s;">
+                    calculate_custom_similarity
+                    <span class="component-desc">Similaridade Customizada</span>
+                    <span class="tooltiptext">Função que calcula o score de compatibilidade ponderado entre dois perfis, levando em consideração diferentes fatores.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.7s;">
+                    FAISS
+                    <span class="component-desc">Busca de Vizinhos</span>
+                    <span class="tooltiptext">Biblioteca utilizada para realizar a busca eficiente de vizinhos mais próximos em espaços de alta dimensão.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camada de Visualização -->
+        <div class="layer layer-visualization">
+            <div class="layer-title">Camada de Visualização</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 0.75s;">
+                    data-cubic-viz-v1.py
+                    <span class="component-desc">Visualização 3D</span>
+                    <span class="tooltiptext">Script Python para criar a visualização 3D interativa dos perfis e seus clusters, utilizando a biblioteca Plotly.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.8s;">
+                    heathmap-data-gen-v2.py
+                    <span class="component-desc">Heatmaps de Similaridade</span>
+                    <span class="tooltiptext">Script Python para gerar heatmaps de similaridade entre perfis, utilizando a biblioteca PIL (Pillow).</span>
+                </div>
+                <div class="component" style="animation-delay: 0.85s;">
+                    Plotly
+                    <span class="component-desc">Gráficos Interativos</span>
+                    <span class="tooltiptext">Biblioteca utilizada para criar gráficos interativos em 3D, permitindo a exploração da distribuição dos perfis e clusters.</span>
+                </div>
+                <div class="component" style="animation-delay: 0.9s;">
+                    PIL (Pillow)
+                    <span class="component-desc">Geração de Imagens</span>
+                    <span class="tooltiptext">Biblioteca utilizada para gerar imagens PNG dos heatmaps de similaridade.</span>
+                </div>
+            </div>
+        </div>
+         <!-- Camada API e Dashboard -->
+        <div class="layer layer-api">
+             <div class="layer-title">Camada API e Dashboard</div>
+             <div class="components-grid">
+                 <div class="component" style="animation-delay: 0.95s;">
+                     match-profilerv3-web-dash-full-themes-fastapi.py
+                     <span class="component-desc">API FastAPI</span>
+                     <span class="tooltiptext">Implementa a API web usando FastAPI para fornecer dados dos perfis e mecanismos de matchmaking. Inclui suporte a temas.</span>
+                 </div>
+                 <div class="component" style="animation-delay: 1.0s;">
+                     log-dashboard-real-time-v4.py
+                     <span class="component-desc">Dashboard de Logs</span>
+                     <span class="tooltiptext">Cria um dashboard para visualização de logs em tempo real usando Flask.</span>
+                 </div>
+                 <div class="component" style="animation-delay: 1.05s;">
+                     Flask
+                     <span class="component-desc">Framework Web</span>
+                     <span class="tooltiptext">Framework web utilizado para construir o dashboard de logs.</span>
+                 </div>
+                 <div class="component" style="animation-delay: 1.1s;">
+                     FastAPI
+                     <span class="component-desc">Framework API</span>
+                     <span class="tooltiptext">Framework web utilizado para construir a API de matchmaking.</span>
+                 </div>
+                 <div class="component" style="animation-delay: 1.15s;">
+                     Jinja2
+                     <span class="component-desc">Motor de Templates</span>
+                     <span class="tooltiptext">Utilizado para renderizar as páginas HTML da interface web.</span>
+                 </div>
+             </div>
+        </div>
+        <!-- Camada de Testes -->
+        <div class="layer layer-tests">
+            <div class="layer-title">Camada de Testes</div>
+            <div class="components-grid">
+                <div class="component" style="animation-delay: 1.2s;">
+                    test-v1-match-profilerv3-web-dash-full-themes.py
+                    <span class="component-desc">Testes Unitários e Integração</span>
+                    <span class="tooltiptext">Script Python que contém testes unitários e de integração para garantir a qualidade do código e a correção das funcionalidades.</span>
+                </div>
+                <div class="component" style="animation-delay: 1.25s;">
+                    unittest
+                    <span class="component-desc">Framework de Testes</span>
+                    <span class="tooltiptext">Framework de testes padrão do Python, utilizado para escrever e executar os testes.</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script JS opcional -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const components = document.querySelectorAll('.component');
+            components.forEach((comp, index) => {
+                if (!comp.style.animationDelay) {
+                    comp.style.animationDelay = `${index * 0.05 + 0.1}s`;
+                }
+            });
+        });
+    </script>
+
+
+        
+
+</body>
+</html>

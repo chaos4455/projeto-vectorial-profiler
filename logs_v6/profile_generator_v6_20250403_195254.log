@@ -1,0 +1,49 @@
+2025-04-03 19:52:54,348 - INFO - [setup_logging:157] - Logging configurado para nível INFO em logs_v6\profile_generator_v6_20250403_195254.log
+2025-04-03 19:52:54,348 - INFO - [<module>:1399] - Método start MP definido para: spawn
+2025-04-03 19:52:54,364 - INFO - [setup_database_pragmas:494] - PRAGMAs SQLite configurados.
+2025-04-03 19:52:54,368 - INFO - [criar_tabelas_otimizadas:538] - Tabela V6 verificada/criada com sucesso em databases_v6\perfis_jogadores_v6.db
+2025-04-03 19:52:54,375 - INFO - [setup_database_pragmas:494] - PRAGMAs SQLite configurados.
+2025-04-03 19:52:54,378 - INFO - [criar_tabelas_otimizadas:538] - Tabela V6 verificada/criada com sucesso em databases_v6\vetores_perfis_v6.db
+2025-04-03 19:52:54,385 - INFO - [setup_database_pragmas:494] - PRAGMAs SQLite configurados.
+2025-04-03 19:52:54,389 - INFO - [criar_tabelas_otimizadas:538] - Tabela V6 verificada/criada com sucesso em databases_v6\embeddings_perfis_v6.db
+2025-04-03 19:52:54,398 - INFO - [setup_database_pragmas:494] - PRAGMAs SQLite configurados.
+2025-04-03 19:52:54,401 - INFO - [criar_tabelas_otimizadas:538] - Tabela V6 verificada/criada com sucesso em databases_v6\clusters_perfis_v6.db
+2025-04-03 19:52:58,001 - INFO - [main:890] - Etapa 2: 30000/30000 perfis gerados em 3.59s.
+2025-04-03 19:52:58,138 - INFO - [main:915] - DF inicial V6: 30000 linhas, Colunas: ['nome', 'idade', 'cidade', 'estado', 'sexo', 'interesses_musicais', 'jogos_favoritos', 'plataformas_possuidas', 'estilos_preferidos', 'disponibilidade', 'interacao_desejada', 'compartilhar_contato', 'anos_experiencia', 'objetivo_principal', 'usa_microfone', 'idiomas', 'nivel_competitivo', 'estilo_comunicacao', 'descricao']
+2025-04-03 19:52:58,176 - INFO - [inserir_dataframe_no_db:549] - Iniciando inserção V6 de 30000 linhas em 'databases_v6\perfis_jogadores_v6.db.perfis'...
+2025-04-03 19:52:59,261 - INFO - [inserir_dataframe_no_db:562] - 30000 registros V6 inseridos em 'databases_v6\perfis_jogadores_v6.db.perfis' em 1.09s.
+2025-04-03 19:52:59,272 - INFO - [main:950] - Buscando IDs dos perfis inseridos...
+2025-04-03 19:52:59,315 - INFO - [main:958] - IDs recuperados com sucesso (30000).
+2025-04-03 19:52:59,322 - INFO - [main:973] - DF atualizado com IDs. Exemplo índices: [1, 2, 3]...
+2025-04-03 19:52:59,324 - INFO - [main:977] - Etapa 3: Perfis salvos e DF atualizado em 1.32s.
+2025-04-03 19:53:06,741 - INFO - [main:1032] - Etapa 4: Vet/Emb V6 concluído em 7.41s.
+2025-04-03 19:53:06,799 - INFO - [main:1066] - Etapa 4.5: Vetores escalonados (MinMaxScaler) em 0.06s.
+2025-04-03 19:53:06,867 - INFO - [main:1090] - Preparados 30000 vetores (vetor_scaled) e 30000 embeddings para salvar.
+2025-04-03 19:53:06,873 - INFO - [salvar_blobs_lote:588] - Iniciando salvamento V6 de 30000 blobs em 'databases_v6\vetores_perfis_v6.db.vetores'...
+2025-04-03 19:53:07,029 - INFO - [salvar_blobs_lote:599] - 30000 blobs V6 salvos em 'databases_v6\vetores_perfis_v6.db.vetores' em 0.16s.
+2025-04-03 19:53:07,098 - INFO - [salvar_blobs_lote:588] - Iniciando salvamento V6 de 30000 blobs em 'databases_v6\embeddings_perfis_v6.db.embeddings'...
+2025-04-03 19:53:08,540 - INFO - [salvar_blobs_lote:599] - 30000 blobs V6 salvos em 'databases_v6\embeddings_perfis_v6.db.embeddings' em 1.44s.
+2025-04-03 19:53:08,547 - INFO - [main:1101] - Etapa 5: Blobs salvos em 1.75s.
+2025-04-03 19:53:08,580 - INFO - [main:1163] - Iniciando clustering V6 com k=173 (N=30000, Método: sqrt)
+2025-04-03 19:53:10,587 - ERROR - [realizar_clustering:730] - Erro FAISS V6: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+Traceback (most recent call last):
+  File "c:\Users\chaos\Meu Drive (evolucaoit@gmail.com)\projeto vectorial profiler\geraprofilesv3.py", line 668, in realizar_clustering
+    if obj_list: inertia = obj_list[-1]
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-04-03 19:53:10,590 - ERROR - [main:1171] - Falha Etapa 6 (Clustering retornou None).
+2025-04-03 19:53:10,591 - INFO - [main:1230] - Etapa 7 pulada - clustering não executado ou falhou.
+2025-04-03 19:53:10,596 - ERROR - [main:1287] - Erro exibir exemplo V6: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+Traceback (most recent call last):
+  File "c:\Users\chaos\Meu Drive (evolucaoit@gmail.com)\projeto vectorial profiler\geraprofilesv3.py", line 1245, in main
+    if pd.notna(value):
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+2025-04-03 19:53:10,596 - INFO - [main:1307] - Etapa 9 pulada (--vacuum-dbs não usado).
+2025-04-03 19:53:10,598 - INFO - [main:1314] - --- Script V6 Finalizado em 16.25s ---
+2025-04-03 19:53:10,599 - CRITICAL - [<module>:1418] - Erro crítico inesperado no pipeline principal: unsupported format string passed to NoneType.__format__
+Traceback (most recent call last):
+  File "c:\Users\chaos\Meu Drive (evolucaoit@gmail.com)\projeto vectorial profiler\geraprofilesv3.py", line 1411, in <module>
+    main(args)
+  File "c:\Users\chaos\Meu Drive (evolucaoit@gmail.com)\projeto vectorial profiler\geraprofilesv3.py", line 1327, in main
+    f"k={n_clusters_target if n_clusters_target > 0 else 'N/A'}, "
+TypeError: unsupported format string passed to NoneType.__format__
+2025-04-03 19:53:11,219 - INFO - [<module>:1427] - Output console Rich (final) salvo em 'logs_v6\console_output_20250403_195311_final.html'

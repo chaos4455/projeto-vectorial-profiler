@@ -1,0 +1,12 @@
+2025-04-01 11:24:57,722 - INFO - --- Script de Valuation V3 (com Score Personalizado) Iniciado ---
+2025-04-01 11:24:57,722 - INFO - Pesos de Score: {'jogos': 0.4, 'estilos': 0.3, 'plataformas': 0.2, 'disponibilidade': 0.1}
+2025-04-01 11:24:57,778 - INFO - Dimensão do embedding confirmada: 64
+2025-04-01 11:24:57,808 - INFO - 20000 embeddings carregados. Dimensão: 64
+2025-04-01 11:24:57,821 - INFO - Índice FAISS (IndexFlatIP) construído. Vetores: 20000
+2025-04-01 11:24:57,823 - INFO - Perfil de origem selecionado: ID 5291
+2025-04-01 11:24:57,824 - INFO - Embedding do perfil de origem (ID 5291) obtido.
+2025-04-01 11:24:57,829 - INFO - Busca FAISS inicial retornou 20001 índices.
+2025-04-01 11:25:04,264 - WARNING - Índice FAISS inválido: -1. Pulando.
+2025-04-01 11:25:04,281 - INFO - Hash de integridade calculado: 9f98ac86bf787817ba97ed1b66355fecf98fc85619cecb2f9a0b2f494833ac9d
+2025-04-01 11:25:04,284 - INFO - Resultados da valuation (com score) salvos em valuation_v3\valuation_2025-04-01T11-25-04_281716_origem_5291_scored.json
+2025-04-01 11:25:04,287 - INFO - --- Script de Valuation V3 (com Score) Finalizado ---

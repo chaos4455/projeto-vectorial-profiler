@@ -1,0 +1,31 @@
+2025-04-01 15:28:16,295 - INFO - [data-cubic-viz-v1.py:78 - <module>] - Logging initialized.
+2025-04-01 15:28:16,316 - INFO - [data-cubic-viz-v1.py:127 - parse_arguments] - Effective Configuration:
+2025-04-01 15:28:16,316 - INFO - [data-cubic-viz-v1.py:128 - parse_arguments] -   Profile DB: databases_v3\perfis_jogadores_v3.db
+2025-04-01 15:28:16,317 - INFO - [data-cubic-viz-v1.py:129 - parse_arguments] -   Embeddings DB: databases_v3\embeddings_perfis_v3.db
+2025-04-01 15:28:16,317 - INFO - [data-cubic-viz-v1.py:130 - parse_arguments] -   Output Dir: data-dash-viewer
+2025-04-01 15:28:16,317 - INFO - [data-cubic-viz-v1.py:131 - parse_arguments] -   Target Neighbors: 10
+2025-04-01 15:28:16,318 - INFO - [data-cubic-viz-v1.py:132 - parse_arguments] -   Embedding Dim: 64
+2025-04-01 15:28:16,318 - INFO - [data-cubic-viz-v1.py:133 - parse_arguments] -   FAISS Search Factor: 30
+2025-04-01 15:28:16,318 - INFO - [data-cubic-viz-v1.py:134 - parse_arguments] -   Origin Profile ID: Random
+2025-04-01 15:28:16,318 - INFO - [data-cubic-viz-v1.py:725 - main] - Loading embeddings and building FAISS index...
+2025-04-01 15:28:16,319 - INFO - [data-cubic-viz-v1.py:335 - load_embeddings_and_map] - Connecting to embedding database: databases_v3\embeddings_perfis_v3.db
+2025-04-01 15:28:16,354 - INFO - [data-cubic-viz-v1.py:348 - load_embeddings_and_map] - Processing 20000 rows from embeddings table...
+2025-04-01 15:28:16,354 - INFO - [data-cubic-viz-v1.py:365 - load_embeddings_and_map] - Detected embedding dimension: 64
+2025-04-01 15:28:16,377 - INFO - [data-cubic-viz-v1.py:406 - load_embeddings_and_map] - Successfully loaded 20000 valid embeddings.
+2025-04-01 15:28:16,378 - INFO - [data-cubic-viz-v1.py:407 - load_embeddings_and_map] - Embedding matrix created with shape: (20000, 64)
+2025-04-01 15:28:16,379 - INFO - [data-cubic-viz-v1.py:412 - load_embeddings_and_map] - Building FAISS IndexFlatL2 with dimension 64...
+2025-04-01 15:28:16,381 - INFO - [data-cubic-viz-v1.py:415 - load_embeddings_and_map] - FAISS index built. Is trained: True, Total vectors: 20000
+2025-04-01 15:28:16,385 - INFO - [data-cubic-viz-v1.py:737 - main] - Data loaded: 20000 profiles with embeddings.
+2025-04-01 15:28:16,386 - INFO - [data-cubic-viz-v1.py:754 - main] - No profile ID provided. Randomly selected origin ID: 10923
+2025-04-01 15:28:16,388 - INFO - [data-cubic-viz-v1.py:777 - main] - Found embedding for origin ID 10923 at matrix index 10922.
+2025-04-01 15:28:16,388 - INFO - [data-cubic-viz-v1.py:797 - main] - Searching for 301 nearest neighbors (L2 distance) for ID 10923 using FAISS...
+2025-04-01 15:28:16,391 - INFO - [data-cubic-viz-v1.py:820 - main] - FAISS search returned 301 raw candidates (including self if found).
+2025-04-01 15:28:16,391 - INFO - [data-cubic-viz-v1.py:839 - main] - Calculating custom similarity scores for FAISS candidates and filtering...
+2025-04-01 15:28:16,534 - INFO - [data-cubic-viz-v1.py:894 - main] - Found 0 candidates passing custom score criteria.
+2025-04-01 15:28:16,535 - INFO - [data-cubic-viz-v1.py:904 - main] - No neighbors passed the custom scoring criteria for ID 10923. Plot will only show origin.
+2025-04-01 15:28:16,535 - INFO - [data-cubic-viz-v1.py:962 - main] - Combined embeddings matrix shape for PCA: (1, 64)
+2025-04-01 15:28:16,535 - WARNING - [data-cubic-viz-v1.py:981 - main] - Only the origin profile is available. PCA cannot be performed. Will attempt to plot origin using first 3 embedding dimensions (or padding).
+2025-04-01 15:28:16,536 - INFO - [data-cubic-viz-v1.py:1038 - main] - Creating Plotly 3D figure...
+2025-04-01 15:28:17,081 - INFO - [data-cubic-viz-v1.py:608 - create_3d_plot] - No valid neighbors found to plot.
+2025-04-01 15:28:17,222 - INFO - [data-cubic-viz-v1.py:1063 - main] - Attempting to generate HTML file: data-dash-viewer\profile_10923_neighbors_score_20250401_152817_d4cc7cb3.html
+2025-04-01 15:28:17,241 - INFO - [data-cubic-viz-v1.py:707 - generate_html_file] - Successfully generated HTML visualization: data-dash-viewer\profile_10923_neighbors_score_20250401_152817_d4cc7cb3.html

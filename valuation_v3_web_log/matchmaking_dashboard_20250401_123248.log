@@ -1,0 +1,28 @@
+2025-04-01 12:32:48,662 - INFO - [MainThread] - start_background_load - Starting background data loading thread...
+2025-04-01 12:32:48,663 - INFO - [DataLoaderThread] - load_data_and_build_index - Initiating data load and FAISS index build...
+2025-04-01 12:32:48,664 - INFO - [DataLoaderThread] - load_data_and_build_index - Loading embeddings from: databases_v3\embeddings_perfis_v3.db
+2025-04-01 12:32:48,665 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Connecting to embedding DB: databases_v3\embeddings_perfis_v3.db
+2025-04-01 12:32:48,694 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Processing 20000 rows from embeddings table...
+2025-04-01 12:32:48,709 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Detected embedding dimension: 64. Expected blob size: 256 bytes.
+2025-04-01 12:32:48,749 - INFO - [DataLoaderThread] - carregar_embeddings_e_ids_internal - Successfully created embedding matrix with shape: (20000, 64)
+2025-04-01 12:32:48,754 - INFO - [DataLoaderThread] - load_data_and_build_index - Successfully loaded 20000 embeddings with dimension 64.
+2025-04-01 12:32:48,755 - INFO - [DataLoaderThread] - load_data_and_build_index - Shape of embeddings matrix: (20000, 64)
+2025-04-01 12:32:48,755 - INFO - [DataLoaderThread] - load_data_and_build_index - Checking consistency with profiles DB: databases_v3\perfis_jogadores_v3.db
+2025-04-01 12:32:48,788 - INFO - [DataLoaderThread] - load_data_and_build_index - Found 20000 profiles in the profiles database.
+2025-04-01 12:32:48,792 - INFO - [DataLoaderThread] - load_data_and_build_index - Building FAISS index...
+2025-04-01 12:32:48,797 - INFO - [DataLoaderThread] - load_data_and_build_index - Embeddings normalized (L2) for FAISS index.
+2025-04-01 12:32:48,798 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Initializing FAISS IndexFlatIP with dimension 64
+2025-04-01 12:32:48,798 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Adding 20000 normalized vectors to the FAISS index...
+2025-04-01 12:32:48,800 - INFO - [DataLoaderThread] - construir_indice_faiss_internal - Vectors added successfully.
+2025-04-01 12:32:48,801 - INFO - [DataLoaderThread] - load_data_and_build_index - FAISS index built successfully. Index type: IndexFlatIP, Is trained: True, Total vectors: 20000
+2025-04-01 12:32:48,801 - INFO - [DataLoaderThread] - load_data_and_build_index - --- Data loading and index build complete ---
+2025-04-01 12:32:49,676 - WARNING - [MainThread] - carregar_perfil_por_id_cached - Profile ID 21000 not found in 'D:\projeto vectorial profiler\databases_v3\perfis_jogadores_v3.db'.
+2025-04-01 12:32:49,678 - INFO - [MainThread] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 15029
+2025-04-01 12:32:49,679 - INFO - [MainThread] - buscar_e_rankear_vizinhos - Performing FAISS search with k=251 for ID 15029
+2025-04-01 12:32:49,680 - INFO - [MainThread] - buscar_e_rankear_vizinhos - FAISS search returned 251 potential candidate indices. Distances[0]: [1.        1.        0.8895677 0.8743206 0.8743206]
+2025-04-01 12:32:49,765 - INFO - [MainThread] - buscar_e_rankear_vizinhos - Processed 250 unique candidates from FAISS results.
+2025-04-01 12:32:49,766 - INFO - [MainThread] - buscar_e_rankear_vizinhos - Found 60 candidates passing ALL thresholds before final sorting.
+2025-04-01 12:32:49,766 - INFO - [MainThread] - buscar_e_rankear_vizinhos - Selected Top 10 neighbors after final ranking.
+2025-04-01 12:32:49,771 - INFO - [MainThread] - buscar_e_rankear_vizinhos - Starting match search for origin ID: 21000
+2025-04-01 12:32:49,772 - WARNING - [MainThread] - carregar_perfil_por_id_cached - Profile ID 21000 not found in 'databases_v3\perfis_jogadores_v3.db'.
+2025-04-01 12:32:49,773 - ERROR - [MainThread] - buscar_e_rankear_vizinhos - Failed to load origin profile ID 21000
