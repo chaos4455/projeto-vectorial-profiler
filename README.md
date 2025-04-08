@@ -134,7 +134,7 @@ Este projeto combina um stack de tecnologias Python robusto com práticas modern
     *   `Supervisor`: Gerenciador de processos para rodar e monitorar os serviços Python dentro do container.
     *   `GitHub Actions`: Automação de CI/CD (build, teste, push da imagem Docker).
 
-### Diagrama de Arquitetura (Conceitual) 🏗️
+
 vectorial-profiler/
 ├── .github/
 │   └── workflows/
@@ -179,29 +179,6 @@ vectorial-profiler/
 ├── test-v1-match-profilerv3-web-dash-full-themes.py # ✅ Script de teste para o dashboard V3
 └── vectorizerv1.py               # 🧬 Script para vetorização/geração de embeddings - Versão 1
 
-# Criar/Obter o arquivo requirements.txt com as libs listadas na seção Tech Stack
-# Exemplo de requirements.txt (pode precisar de ajustes):
-# numpy
-# pandas
-# scikit-learn
-# faiss-cpu # ou faiss-gpu se tiver GPU e CUDA configurados
-# sentence-transformers
-# plotly
-# flask
-# flask_cors
-# fastapi
-# uvicorn # Necessário para FastAPI
-# Pillow
-# rich
-# faker
-# waitress
-# requests
-# colorama
-# psutil
-# schedule
-
-pip install -r requirements.txt
-
 [supervisord]
 nodaemon=true
 logfile=/var/log/supervisor/supervisord.log
@@ -233,6 +210,4 @@ stderr_logfile=/var/log/supervisor/profiler.err.log
 stdout_logfile=/var/log/supervisor/profiler.out.log
 # Adicione a porta se necessário (depende de como o script é iniciado)
 # environment=FLASK_RUN_PORT=8881
-
-docker pull chaos4455/vectorial-profiler:latest
 
