@@ -1,117 +1,254 @@
-name: ⚙️ Vectorial Profiler - Docker Build and Runtime Validation
+name: ⚙️ Vectorial Profiler - Dynamic Docker Build, Push & Validation
 
 on:
   push:
     branches:
       - main
+  # Optional: Add workflow_dispatch to run manually
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: chaos4455/vectorial-profiler
+  VERSION: latest # Consider using ${{ github.sha }} for unique tags
+  DOCKERHUB_USERNAME: chaos4455
+  FLASK_PORT: 8881
+  CONTAINER_NAME: vectorial_profiler_test
 
 jobs:
-  build-and-test:
+  build-push-validate:
     runs-on: ubuntu-latest
-
-    env:
-      IMAGE_NAME: chaos4455/vectorial-profiler
-      VERSION: latest
-      DOCKERHUB_USERNAME: chaos4455
-      FLASK_PORT: 8881
+    permissions:
+      contents: read # Needed for checkout
+      packages: write # Needed for pushing to Docker Hub via docker/build-push-action
 
     steps:
-      - name: 🧱 Checkout Repository (projeto-vectorial-profiler)
-        uses: actions/checkout@v3
+      - name: 🧱 Checkout Repository
+        uses: actions/checkout@v4 # Use latest version
 
-      - name: 🧾 Create Dockerfile dynamically
+      - name: 📄 Create Dockerfile dynamically
         run: |
+          echo "Creating Dockerfile dynamically..."
           cat <<'EOF' > Dockerfile
-          FROM ubuntu:22.04
-          ENV DEBIAN_FRONTEND=noninteractive
+# Use an official Ubuntu 22.04 runtime as a parent image
+FROM ubuntu:22.04
 
-          RUN apt-get update && \
-              apt-get upgrade -y && \
-              apt-get install -y python3 python3-pip curl git net-tools iputils-ping nano supervisor && \
-              pip3 install --no-cache-dir \
-                flask \
-                flask_cors \
-                requests \
-                colorama \
-                psutil \
-                schedule
+# Set environment variable to non-interactive (avoids prompts during apt-get)
+ENV DEBIAN_FRONTEND=noninteractive
 
-          RUN useradd -m -s /bin/bash vectorial && \
-              echo 'vectorial:vectorial' | chpasswd && \
-              mkdir -p /home/vectorial/app /var/log/supervisor
+# Install system dependencies including Python, pip, Supervisor, and build tools
+# Clean up apt cache afterwards to reduce image size
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+      python3 \
+      python3-pip \
+      curl \
+      git \
+      net-tools \
+      iputils-ping \
+      nano \
+      supervisor \
+      build-essential && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-          WORKDIR /home/vectorial/app
-          COPY . .
+# Install Python dependencies including numpy and faiss-cpu
+# Use --no-cache-dir to reduce image size
+RUN pip3 install --no-cache-dir \
+      flask \
+      flask_cors \
+      requests \
+      colorama \
+      psutil \
+      schedule \
+      numpy \
+      faiss-cpu
 
-          COPY supervisord.conf /etc/supervisor/supervisord.conf
+# Create a non-root user 'vectorial' and its home directory
+# Create necessary log directory and set permissions
+RUN useradd -m -s /bin/bash vectorial && \
+    mkdir -p /home/vectorial/app /var/log/supervisor && \
+    chown -R vectorial:vectorial /home/vectorial /var/log/supervisor
 
-          CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
-          EOF
+# Set the working directory in the container
+WORKDIR /home/vectorial/app
+
+# Copy the application code into the container (from the checked-out repo)
+# Change ownership to the non-root user
+# Note: This copies everything from the repo root into /home/vectorial/app
+COPY --chown=vectorial:vectorial . .
+
+# Copy the Supervisor configuration file (will be created in the next step)
+# COPY supervisord.conf /etc/supervisor/supervisord.conf # We copy it later after creation
+
+# Expose the Flask port (optional, good practice for documentation)
+# EXPOSE ${{ env.FLASK_PORT }} # Cannot use env var here directly
+
+# Switch to the non-root user
+USER vectorial
+
+# Command to run Supervisor when the container launches (using the config file)
+# CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"] # We specify entrypoint/cmd later if needed or rely on supervisord.conf copy
+EOF
+          echo "Dockerfile content:"
+          cat Dockerfile
 
       - name: ⚙️ Create supervisord.conf dynamically
         run: |
-          cat <<'EOF' > supervisord.conf
-          [supervisord]
-          nodaemon=true
-          logfile=/var/log/supervisor/supervisord.log
-          pidfile=/tmp/supervisord.pid
+          echo "Creating supervisord.conf dynamically..."
+          cat <<EOF > supervisord.conf
+[supervisord]
+nodaemon=true                      ; Run Supervisor in the foreground
+logfile=/var/log/supervisor/supervisord.log ; Main log file
+pidfile=/tmp/supervisord.pid       ; PID file location
+user=vectorial                     ; Run processes as this user by default
 
-          [program:generator]
-          command=python3 /home/vectorial/app/geraprofilesv3.py
-          directory=/home/vectorial/app
-          autostart=true
-          autorestart=false
-          startsecs=5
-          exitcodes=0,1
-          stderr_logfile=/var/log/supervisor/generator.err.log
-          stdout_logfile=/var/log/supervisor/generator.out.log
+[program:generator]
+command=python3 /home/vectorial/app/geraprofilesv3.py
+directory=/home/vectorial/app
+autostart=true
+autorestart=false                  ; Don't restart if it exits
+startsecs=5                        ; Time the process must stay up to be considered started
+exitcodes=0,1                      ; Expected exit codes
+stderr_logfile=/var/log/supervisor/generator.err.log
+stdout_logfile=/var/log/supervisor/generator.out.log
+user=vectorial                     ; Explicitly run as vectorial
 
-          [program:profiler]
-          command=python3 /home/vectorial/app/match-profilerv3-web-dash-full-themes.py
-          directory=/home/vectorial/app
-          autostart=true
-          autorestart=true
-          startsecs=10
-          stderr_logfile=/var/log/supervisor/profiler.err.log
-          stdout_logfile=/var/log/supervisor/profiler.out.log
-          EOF
+[program:profiler]
+command=python3 /home/vectorial/app/match-profilerv3-web-dash-full-themes.py
+directory=/home/vectorial/app
+autostart=true
+autorestart=true                   ; Restart if it crashes
+startsecs=10                       ; Time the process must stay up to be considered started
+stderr_logfile=/var/log/supervisor/profiler.err.log
+stdout_logfile=/var/log/supervisor/profiler.out.log
+user=vectorial                     ; Explicitly run as vectorial
+environment=FLASK_PORT="${{ env.FLASK_PORT }}" ; Pass FLASK_PORT env var if needed by the app
+EOF
+          echo "supervisord.conf content:"
+          cat supervisord.conf
+          # Now that supervisord.conf exists, add the COPY and CMD lines to Dockerfile
+          # This is a bit awkward, but necessary if CMD depends on the copied conf file
+          echo "COPY supervisord.conf /etc/supervisor/supervisord.conf" >> Dockerfile
+          echo 'CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]' >> Dockerfile
+          echo "Final Dockerfile content:"
+          cat Dockerfile
 
       - name: 🐳 Docker Login
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3 # Use latest version
         with:
           username: ${{ env.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }} # Ensure DOCKERHUB_TOKEN is set in repo secrets
 
-      - name: 🛠️ Build Docker Image from this repo (vectorial-profiler)
+      - name: 🛠️ Build and Push Docker Image
+        uses: docker/build-push-action@v5 # Use latest version
+        with:
+          context: . # Build context is the root directory (where Dockerfile was created)
+          file: ./Dockerfile # Explicitly point to the created Dockerfile
+          push: true # Push the image after building
+          tags: ${{ env.IMAGE_NAME }}:${{ env.VERSION }} # Tag with specified version
+          cache-from: type=gha # Enable GitHub Actions cache for Docker layers
+          cache-to: type=gha,mode=max # Write to cache
+
+      - name: 🚀 Deploy Container for Validation
+        id: deploy # Give this step an ID
         run: |
-          docker build -t $IMAGE_NAME:$VERSION .
+          echo "🧪 Starting container ${{ env.CONTAINER_NAME }} from image ${{ env.IMAGE_NAME }}:${{ env.VERSION }}..."
+          docker run -d --name ${{ env.CONTAINER_NAME }} \
+            -p ${{ env.FLASK_PORT }}:${{ env.FLASK_PORT }} \
+            -e FLASK_PORT=${{ env.FLASK_PORT }} \
+            ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          echo "✅ Container started."
 
-      - name: 📤 Push Docker Image
+      - name: ⏱️ Wait for Application and Validate Health
+        id: validate-health # Give this step an ID for outcome checking
         run: |
-          docker push $IMAGE_NAME:$VERSION
-
-      - name: 🚀 Deploy Container & Validate
-        run: |
-          echo '🧪 Subindo container com o código do projeto-vectorial-profiler...'
-          docker run -d --name vectorial_profiler_test -p $FLASK_PORT:$FLASK_PORT $IMAGE_NAME:$VERSION
-
-          echo '⏳ Aguardando 20 segundos para inicialização completa...'
-          sleep 20
-
-          echo "🔍 Verificando se a porta $FLASK_PORT está ativa..."
-          if nc -zv localhost $FLASK_PORT; then
-            echo '✅ Porta ativa! Serviços iniciados com sucesso.'
-          else
-            echo '❌ Falha: Porta não está respondendo após tempo de espera.'
-            docker logs vectorial_profiler_test
-            exit 1
+          echo "⏳ Waiting up to 60 seconds for application to be healthy..."
+          MAX_WAIT=60
+          INTERVAL=5
+          ELAPSED=0
+          # Make sure the container is actually running before starting checks
+          for i in {1..3}; do
+            if [ "$(docker ps -q -f name=${{ env.CONTAINER_NAME }})" ]; then
+              echo "Container process found."
+              break
+            fi
+            echo "Container process not found yet, waiting..."
+            sleep 3
+          done
+          if [ ! "$(docker ps -q -f name=${{ env.CONTAINER_NAME }})" ]; then
+             echo "❌ Error: Container ${{ env.CONTAINER_NAME }} failed to start or exited early."
+             exit 1
           fi
 
-          echo '📜 Logs do supervisord:'
-          docker exec vectorial_profiler_test tail -n 50 /var/log/supervisor/supervisord.log || echo '⚠️ Não foi possível obter logs.'
+          while [ $ELAPSED -lt $MAX_WAIT ]; do
+            # Check if the port is listening AND if the app responds with HTTP 2xx/3xx
+            # Adjust '/ ' if your app has a specific health check endpoint (e.g., /health)
+            if curl --fail --silent --show-error --max-time $(($INTERVAL - 1)) http://localhost:${{ env.FLASK_PORT }}/ > /dev/null; then
+              echo "✅ Application is healthy and responding on port ${{ env.FLASK_PORT }}!"
+              exit 0
+            else
+              # Check if container is still running
+               if ! docker ps -q -f name=${{ env.CONTAINER_NAME }}; then
+                  echo "❌ Error: Container ${{ env.CONTAINER_NAME }} stopped unexpectedly during health check."
+                  exit 1
+               fi
+               echo "  ...app not ready yet or curl failed (check curl error above if any). Waiting ($ELAPSED/$MAX_WAIT seconds elapsed)"
+            fi
+            sleep $INTERVAL
+            ELAPSED=$(($ELAPSED + $INTERVAL))
+          done
+          echo "❌ Error: Application did not become healthy within $MAX_WAIT seconds."
+          exit 1
 
-          echo '📜 Logs do generator (erro esperado pode aparecer):'
-          docker exec vectorial_profiler_test tail -n 50 /var/log/supervisor/generator.out.log || echo '⚠️ Sem logs do generator.'
+      - name: 📄 Display Container Logs (on Success)
+        # Runs only if the health check above succeeds
+        if: success() # Checks if all previous steps succeeded
+        run: |
+          echo "🩺 Health check passed. Displaying recent logs..."
+          echo "📜 Recent Supervisord logs:"
+          docker logs --tail 50 ${{ env.CONTAINER_NAME }} || echo "⚠️ Could not get Supervisord logs."
+          echo "---"
+          echo "📜 Recent Generator logs (stdout):"
+          docker exec ${{ env.CONTAINER_NAME }} tail -n 50 /var/log/supervisor/generator.out.log || echo "⚠️ Could not get Generator stdout logs."
+          echo "---"
+          echo "📜 Recent Profiler logs (stdout):"
+          docker exec ${{ env.CONTAINER_NAME }} tail -n 50 /var/log/supervisor/profiler.out.log || echo "⚠️ Could not get Profiler stdout logs."
+          echo "---"
+          echo "📜 Recent Profiler logs (stderr):"
+          docker exec ${{ env.CONTAINER_NAME }} tail -n 50 /var/log/supervisor/profiler.err.log || echo "⚠️ Could not get Profiler stderr logs."
 
-          echo '📜 Logs do profiler (deve estar rodando sem falhas):'
-          docker exec vectorial_profiler_test tail -n 50 /var/log/supervisor/profiler.out.log || echo '⚠️ Sem logs do profiler.'
+      - name: 🧹 Cleanup Container
+        # This step runs regardless of whether prior steps succeeded or failed
+        if: always()
+        run: |
+          echo "🧹 Stopping and removing container ${{ env.CONTAINER_NAME }}..."
+          docker stop ${{ env.CONTAINER_NAME }} || echo "Container already stopped or not found."
+          docker rm ${{ env.CONTAINER_NAME }} || echo "Container already removed or not found."
+          echo "✅ Cleanup attempt complete."
+
+      - name: ❌ Dump Logs on Failure
+        # This step runs only if any step in the job failed
+        if: failure()
+        run: |
+          echo "❌ Workflow step failed. Dumping container logs for debugging (if container exists)..."
+          # Check if container exists before trying to get logs
+          if [ "$(docker ps -a -q -f name=${{ env.CONTAINER_NAME }})" ]; then
+            echo "📜 Supervisord logs (last 100 lines):"
+            docker logs --tail 100 ${{ env.CONTAINER_NAME }} || echo "⚠️ Could not get Supervisord logs."
+            echo "---"
+            echo "📜 Generator logs (stdout, last 100 lines):"
+            docker exec ${{ env.CONTAINER_NAME }} tail -n 100 /var/log/supervisor/generator.out.log || echo "⚠️ Could not get Generator stdout logs."
+            echo "---"
+            echo "📜 Generator logs (stderr, last 100 lines):"
+            docker exec ${{ env.CONTAINER_NAME }} tail -n 100 /var/log/supervisor/generator.err.log || echo "⚠️ Could not get Generator stderr logs."
+            echo "---"
+            echo "📜 Profiler logs (stdout, last 100 lines):"
+            docker exec ${{ env.CONTAINER_NAME }} tail -n 100 /var/log/supervisor/profiler.out.log || echo "⚠️ Could not get Profiler stdout logs."
+            echo "---"
+            echo "📜 Profiler logs (stderr, last 100 lines):"
+            docker exec ${{ env.CONTAINER_NAME }} tail -n 100 /var/log/supervisor/profiler.err.log || echo "⚠️ Could not get Profiler stderr logs."
+          else
+            echo "Container ${{ env.CONTAINER_NAME }} was not found. Logs unavailable (it might have failed to start or was cleaned up)."
+          fi
+          # No exit 1 here, let the workflow reflect the original failure step
