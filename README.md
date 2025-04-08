@@ -1,19 +1,5 @@
 # 🚀 Vectorial Profiler 🎮
 
-# 🚀 Vectorial Profiler 🎮
-
-[![Python Version][python-shield]][python-url]
-[![License: MIT][license-shield]][license-url]
-[![Build Status][build-shield]][build-url]
-[![Docker Pulls][docker-pulls-shield]][docker-hub-url]
-[![Docker Image Size][docker-size-shield]][docker-hub-url]
-[![Code Style: Black][code-style-shield]][code-style-url]
-<!-- Adicione mais badges relevantes conforme necessário -->
-
-**Autor:** [Elias Andrade (chaos4455)][author-github-url] - Arquiteto de Soluções de IA 🧠
-
-**Repositório:** [chaos4455/projeto-vectorial-profiler][repo-url]
-
 ---
 
 Explore este projeto, um estudo aprofundado em arquitetura de software ⚙️, com foco em sistemas de Inteligência Artificial 🧠 aplicados à análise de perfis. O **Vectorial Profiler** demonstra a criação de APIs robustas 🔗 e back-end para integrações complexas envolvendo Data Science 📊, Machine Learning (ML) e técnicas de embedding (similares às usadas em LLMs 💬) para análise vetorial.
