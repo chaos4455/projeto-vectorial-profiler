@@ -1,5 +1,69 @@
 # 🚀 Vectorial Profiler 🎮
 
+# 🚀 Deploy Rápido: Vectorial Profiler com Docker
+
+Este guia mostra como baixar e executar rapidamente a imagem Docker `chaos4455/vectorial-profiler`.
+
+## ✅ Pré-requisitos
+
+*   Você precisa ter o [Docker](https://docs.docker.com/get-docker/) instalado e rodando no seu sistema. 🐳
+*   Acesso a um terminal ou prompt de comando. 💻
+
+## 📝 Passos para o Deploy
+
+1.  **Baixar a Imagem Docker 📥**
+
+    Use o comando `docker pull` para baixar a imagem do Docker Hub:
+
+    ```bash
+    docker pull chaos4455/vectorial-profiler
+    ```
+
+2.  **Rodar o Contêiner 🏃💨**
+
+    Execute o contêiner usando `docker run`. Este comando:
+    *   `-d`: Roda o contêiner em segundo plano (detached mode).
+    *   `-p 8881:8881`: Mapeia a porta 8881 da sua máquina local para a porta 8881 do contêiner.
+    *   `--name vectorial-profiler-container`: Define um nome fácil de lembrar para o contêiner.
+    *   `chaos4455/vectorial-profiler`: Especifica a imagem a ser usada.
+
+    ```bash
+    docker run -d -p 8881:8881 --name vectorial-profiler-container chaos4455/vectorial-profiler
+    ```
+
+3.  **Acessar (se aplicável) 🌐**
+
+    Após o contêiner iniciar, se o `vectorial-profiler` tiver uma interface web, você geralmente poderá acessá-la através do seu navegador:
+
+    ➡️ [http://localhost:8881](http://localhost:8881)
+
+    *(Se estiver rodando Docker em uma máquina remota ou VM, substitua `localhost` pelo IP correspondente).*
+
+## ⚙️ Gerenciando o Contêiner
+
+*   **Parar o contêiner:** 🛑
+    ```bash
+    docker stop vectorial-profiler-container
+    ```
+*   **Iniciar o contêiner novamente:** ▶️
+    ```bash
+    docker start vectorial-profiler-container
+    ```
+*   **Ver logs do contêiner:** 📄
+    ```bash
+    docker logs vectorial-profiler-container
+    ```
+*   **Remover o contêiner (após parar):** 🗑️
+    ```bash
+    docker rm vectorial-profiler-container
+    ```
+
+---
+
+🎉 Pronto! O `vectorial-profiler` deve estar rodando em um contêiner Docker.
+
+
+
 <img width="454" alt="Cursor_eMJLYzKsFu" src="https://github.com/user-attachments/assets/6bc2092e-79e5-4c19-8b98-d270ed4c0a31" />
 
 <img width="1200" alt="Cursor_b0c4bggQVe" src="https://github.com/user-attachments/assets/51b227e9-aef8-4a1a-a6e8-8af17c56c098" />
