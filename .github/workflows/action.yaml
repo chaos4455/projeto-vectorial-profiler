@@ -1,0 +1,117 @@
+name: 🧬 Build and Push Docker Image for Vectorial Profiler
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-push-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      IMAGE_NAME: chaos4455/vectorial-profiler
+      VERSION: latest
+      DOCKERHUB_USERNAME: chaos4455
+
+    steps:
+      - name: 🧱 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🧾 Create Dockerfile dynamically
+        run: |
+          cat <<'EOF' > Dockerfile
+          FROM ubuntu:22.04
+          ENV DEBIAN_FRONTEND=noninteractive
+
+          RUN apt-get update && \
+              apt-get upgrade -y && \
+              apt-get install -y python3 python3-pip curl git net-tools iputils-ping nano openssh-server supervisor && \
+              pip3 install --no-cache-dir \
+                fastapi \
+                uvicorn[standard] \
+                pandas \
+                numpy \
+                matplotlib \
+                flask \
+                flask_cors \
+                schedule \
+                requests \
+                tqdm \
+                rich
+
+          RUN useradd -m -s /bin/bash replika && \
+              echo 'replika:replika' | chpasswd && \
+              mkdir -p /home/replika/app /var/log/supervisor
+
+          WORKDIR /home/replika/app
+          COPY . .
+
+          COPY supervisord.conf /etc/supervisor/supervisord.conf
+
+          CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+          EOF
+
+      - name: ⚙️ Create supervisord.conf dynamically
+        run: |
+          cat <<'EOF' > supervisord.conf
+          [supervisord]
+          nodaemon=true
+          logfile=/var/log/supervisor/supervisord.log
+          pidfile=/tmp/supervisord.pid
+
+          [program:gerador]
+          command=/bin/bash -c "sleep 10 && python3 /home/replika/app/geraprofilesv3.py || echo '⚠️ Erro esperado no gerador'"
+          directory=/home/replika/app
+          autostart=true
+          autorestart=false
+          startsecs=3
+          stderr_logfile=/var/log/supervisor/gerador.err.log
+          stdout_logfile=/var/log/supervisor/gerador.out.log
+
+          [program:matcher]
+          command=python3 /home/replika/app/match-profilerv3-web-dash-full-themes.py
+          directory=/home/replika/app
+          autostart=true
+          autorestart=true
+          startsecs=3
+          stderr_logfile=/var/log/supervisor/matcher.err.log
+          stdout_logfile=/var/log/supervisor/matcher.out.log
+          EOF
+
+      - name: 🐳 Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: 🛠️ Build Docker Image
+        run: |
+          docker build -t $IMAGE_NAME:$VERSION .
+
+      - name: 📤 Push Docker Image
+        run: |
+          docker push $IMAGE_NAME:$VERSION
+
+      - name: 🚀 Deploy & Test Ports
+        run: |
+          docker run -d --name vectorial_test_container -p 8333:8333 -p 8777:8777 $IMAGE_NAME:$VERSION
+          echo '⏳ Aguardando 15s para inicialização dos serviços...'
+          sleep 15
+          echo '🔍 Testando se as portas estão respondendo...'
+          nc -zv localhost 8333 || echo '⚠️ Porta 8333 não está respondendo.'
+          nc -zv localhost 8777 || echo '⚠️ Porta 8777 não está respondendo.'
+          echo '✅ Teste de portas finalizado.'
+          echo '📜 Últimos logs do supervisord:'
+          docker exec vectorial_test_container tail -n 50 /var/log/supervisor/supervisord.log || echo '⚠️ Não foi possível obter logs.'
+          echo '📜 Logs do gerador:'
+          docker exec vectorial_test_container tail -n 50 /var/log/supervisor/gerador.out.log || echo '⚠️ Sem logs.'
+          echo '📜 Logs do matcher:'
+          docker exec vectorial_test_container tail -n 50 /var/log/supervisor/matcher.out.log || echo '⚠️ Sem logs.'
+
+      # - name: 🏷️ Optional: Create and push tag
+      #   run: |
+      #     git config --global user.name "Elias Andrade - Replika AI"
+      #     git config --global user.email "chaos4455@users.noreply.github.com"
+      #     git tag RC1-beta-v0001
+      #     git push origin --tags
