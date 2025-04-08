@@ -1,5 +1,48 @@
 # 🚀 Vectorial Profiler 🎮
 
+<img width="454" alt="Cursor_eMJLYzKsFu" src="https://github.com/user-attachments/assets/6bc2092e-79e5-4c19-8b98-d270ed4c0a31" />
+
+<img width="1200" alt="Cursor_b0c4bggQVe" src="https://github.com/user-attachments/assets/51b227e9-aef8-4a1a-a6e8-8af17c56c098" />
+
+<img width="554" alt="Cursor_AiSaHeqVCI" src="https://github.com/user-attachments/assets/aa771174-12c3-4e97-b50a-ef28370ad1bc" />
+
+<img width="491" alt="Cursor_ADFQjZzZAT" src="https://github.com/user-attachments/assets/77b9e643-04fc-4dd5-8456-1854b048cfef" />
+
+<img width="1178" alt="chrome_RwBxZa9euB" src="https://github.com/user-attachments/assets/01357404-fa5f-41f0-a2f7-d2eca5459c2f" />
+
+<img width="751" alt="chrome_UufPBL2Nl9" src="https://github.com/user-attachments/assets/a18a02ad-d426-460c-b170-7591d273af7f" />
+
+<img width="1310" alt="chrome_ZMesO23SxX" src="https://github.com/user-attachments/assets/60c4abf1-61e0-43e2-9ed8-10e62456c3c9" />
+
+<img width="1296" alt="chrome_R8LMpJTLFH" src="https://github.com/user-attachments/assets/81e8714e-3cfe-4011-ae00-8939f6f7f789" />
+
+<img width="1296" alt="chrome_8bj1yS9MCA" src="https://github.com/user-attachments/assets/98f8bfa1-2980-4dcf-a545-da39fde3b3af" />
+
+<img width="1288" alt="chrome_rm0uwNKfJ6" src="https://github.com/user-attachments/assets/58a9def3-19de-4de4-9283-55776c498284" />
+
+<img width="409" alt="chrome_7Ork7PCeqn" src="https://github.com/user-attachments/assets/c1aadbc7-dd86-41ce-bd68-c8a58228d750" />
+
+<img width="569" alt="chrome_T4zsXWpDLI" src="https://github.com/user-attachments/assets/d1f6e518-333f-42e5-879f-34cc1fa48765" />
+
+<img width="1177" alt="chrome_sxmdMOz0d6" src="https://github.com/user-attachments/assets/fd4f64b3-f7ae-4ffe-9d07-a12cd4edbf9e" />
+
+<img width="1175" alt="chrome_BdH7Gc5cRE" src="https://github.com/user-attachments/assets/a8454a5e-b193-4ba5-b53a-d8d8db17d688" />
+
+<img width="474" alt="chrome_5V2Ok32pav" src="https://github.com/user-attachments/assets/a916954b-e818-4da8-85c8-50f791951c42" />
+
+<img width="1136" alt="chrome_gVmNbqHoGH" src="https://github.com/user-attachments/assets/edeed19c-0bde-4040-b642-0d821dba2c94" />
+
+<img width="944" alt="chrome_YJjdsy8usB" src="https://github.com/user-attachments/assets/f5f10c7f-5e6b-4fb1-8897-3447a2571912" />
+
+<img width="469" alt="chrome_pwpe5juZbZ" src="https://github.com/user-attachments/assets/858e28de-d6d5-4dc4-9767-11edac4f73d6" />
+
+<img width="744" alt="chrome_ak18dtP8fZ" src="https://github.com/user-attachments/assets/aa3d134f-85a9-43ac-b9e5-4a83a045d844" />
+
+<img width="451" alt="chrome_n0QtYS482U" src="https://github.com/user-attachments/assets/8adc9cf9-177a-422b-a77f-9cbd27070cf9" />
+
+<img width="434" alt="chrome_QyF9bhYwmQ" src="https://github.com/user-attachments/assets/1a546ef8-4cbb-45b5-b7d7-4dbef9f1857e" />
+
+
 ---
 
 Explore este projeto, um estudo aprofundado em arquitetura de software ⚙️, com foco em sistemas de Inteligência Artificial 🧠 aplicados à análise de perfis. O **Vectorial Profiler** demonstra a criação de APIs robustas 🔗 e back-end para integrações complexas envolvendo Data Science 📊, Machine Learning (ML) e técnicas de embedding (similares às usadas em LLMs 💬) para análise vetorial.
